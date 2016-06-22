@@ -50,8 +50,8 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         SleepEntry current = data.get(position);
 
         // get the sleepTime and wakeTime
-        Date sleep_date = new Date(current.sleepTime);
-        Date wake_date = new Date(current.wakeTime);
+        Date sleep_date = new Date(current.getSleepTime());
+        Date wake_date = new Date(current.getWakeTime());
 
         // date/time format
         SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd       hh:mm aa");
