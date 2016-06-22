@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
 
         // set the alarmSet text when the alarm is ringing
         // TODO(James): This needs to be implemented as a listener so it can dynamically set the text
-        if (AlarmReceiver.mMediaPlayer != null && AlarmReceiver.mMediaPlayer.isPlaying()) {
+        if (AlarmReceiver.getMediaPlayer() != null && AlarmReceiver.getMediaPlayer().isPlaying()) {
             TextView setText = (TextView) findViewById(R.id.alarmSet);
             setText.setText("WAKE UP!");
         }
@@ -248,8 +248,8 @@ public class MainActivity extends AppCompatActivity
         // and cancel the pending intent
         Vibrator currentVibrate = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         currentVibrate.cancel();
-        if (AlarmReceiver.mMediaPlayer != null) {
-            AlarmReceiver.mMediaPlayer.stop();
+        if (AlarmReceiver.getMediaPlayer() != null) {
+            AlarmReceiver.getMediaPlayer().stop();
         }
 
         // make the alarmSet textView blank

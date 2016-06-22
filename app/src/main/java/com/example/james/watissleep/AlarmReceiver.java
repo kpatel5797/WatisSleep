@@ -92,6 +92,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
+    public static MediaPlayer getMediaPlayer() {
+        return mMediaPlayer;
+    }
+
     public void displayNotification(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.mipmap.ic_launcher);
