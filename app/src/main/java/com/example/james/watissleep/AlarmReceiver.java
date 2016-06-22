@@ -15,6 +15,8 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 
+import com.example.james.watissleep.Activities.MainActivity;
+
 import java.io.IOException;
 
 /**

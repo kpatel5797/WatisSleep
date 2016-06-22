@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Activities;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.james.watissleep.R;
+import com.example.james.watissleep.Adapters.SleepAdapter;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
 
 import io.realm.Realm;
 import io.realm.RealmResults;

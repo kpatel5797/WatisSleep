@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Dialogs;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
+import com.example.james.watissleep.R;
+import com.example.james.watissleep.Adapters.SleepAdapter;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

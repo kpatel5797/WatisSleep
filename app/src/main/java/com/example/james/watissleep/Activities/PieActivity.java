@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Activities;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -10,6 +10,9 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.james.watissleep.Dialogs.FeedbackDialog;
+import com.example.james.watissleep.Database_Tables.FeedbackEntry;
+import com.example.james.watissleep.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;

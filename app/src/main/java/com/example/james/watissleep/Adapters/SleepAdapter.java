@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.james.watissleep.Activities.SleepListActivity;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
+import com.example.james.watissleep.Dialogs.EditSleepDialog;
+import com.example.james.watissleep.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

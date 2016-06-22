@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Activities;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -26,6 +26,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.james.watissleep.AlarmReceiver;
+import com.example.james.watissleep.Dialogs.FeedbackDialog;
+import com.example.james.watissleep.R;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,8 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.example.james.watissleep.AppCompatPreferenceActivity;
+import com.example.james.watissleep.R;
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
 import java.util.Calendar;

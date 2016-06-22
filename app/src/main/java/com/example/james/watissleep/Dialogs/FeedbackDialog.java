@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Dialogs;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.james.watissleep.Database_Tables.FeedbackEntry;
+import com.example.james.watissleep.R;
 
 import java.util.Calendar;
 

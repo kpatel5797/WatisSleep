@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -27,20 +27,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PieActivity"
+            android:name=".Activities.PieActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Activities.MainActivity" />
 
         <receiver android:name=".AlarmReceiver" />
 
-        <activity android:name=".SleepListActivity"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".Activities.SleepListActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:label="List of Sleep Entries"></activity>
     </application>
 
