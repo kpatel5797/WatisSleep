@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.james.watissleep.MainActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:background="#424242">
+
+        <ImageView
+            android:id="@+id/city_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:elevation="10dp"
+            android:contentDescription=""
+            android:background="@drawable/city" />
+
+        <ImageView
+            android:id="@+id/imagePlayIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/drawer_icon"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="open"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:cropToPadding="false"
+            android:focusable="false"
+            android:elevation="10dp" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        cardElevation="20dp"
+        cardCornerRadius="3dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:elevation="100dp">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Hey There! The current time is:"
+                android:id="@+id/hey"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:typeface="normal" />
+
+            <TextClock
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarmTime"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="40sp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="You should probably go to bed soon"
+                android:id="@+id/bedText"
+                android:typeface="normal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/alarmTime"
+                android:layout_alignStart="@+id/alarmTime"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sample="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:key="generalCategory" android:title="Sound">
+        <SwitchPreference
+            android:title="Vibrate"
+            android:defaultValue="false"
+            android:key="vibrate_setting"
+            />
+        <com.pavelsikun.seekbarpreference.SeekBarPreference
+            android:key="volume_seek"
+            android:title="Alarm Volume"
+            android:defaultValue="5000"
+
+            sample:msbp_minValue="0"
+            sample:msbp_maxValue="7"
+            sample:msbp_interval="1"
+            sample:msbp_measurementUnit=""
+            sample:msbp_dialogEnabled="false"/>
+
+        <RingtonePreference
+            android:key="alarm_preference"
+            android:title="Wake Up Alarm"
+            android:ringtoneType="alarm"
+            android:summary="Set Your Alarm Sound"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="advancedCategory" android:title="Advanced">
+        <ListPreference
+            android:key="snooze_preference"
+            android:title="Snooze Duration"
+            android:entries="@array/SnoozeOptions"
+            android:entryValues="@array/SnoozeData"
+            android:defaultValue="10"
+            android:summary="%s"
+            />
+        <SwitchPreference
+            android:key="notification_preference"
+            android:title="Notifications"
+            android:defaultValue="true"
+            android:summary="Allow WatisSleep To Send Notifications"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>

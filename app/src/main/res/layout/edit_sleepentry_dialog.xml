@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="1000dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:textSize="15sp"
+            android:text="Sleep Date:"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:textSize="15dp"
+            android:id="@+id/sleep_date_edit"
+            android:layout_marginBottom="10dp"
+            android:focusable="false"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginRight="50dp"
+            android:text="Sleep Time:"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:textSize="15dp"
+            android:id="@+id/sleep_time_edit"
+            android:layout_marginBottom="10dp"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginRight="50dp"
+            android:text="Wake Date:"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:textSize="15dp"
+            android:id="@+id/wake_date_edit"
+            android:layout_marginBottom="10dp"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginRight="50dp"
+            android:text="Sleep Time:"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:textSize="15dp"
+            android:id="@+id/wake_time_edit"
+            android:layout_marginBottom="10dp"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginRight="10dp">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_cancel_sleep_entry_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fancy:fb_text="CANCEL"
+            fancy:fb_textSize="15sp"
+            fancy:fb_textColor="#212121"
+            fancy:fb_focusColor="#E0E0E0"
+            android:elevation="1dp"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            fancy:fb_iconPosition="left"
+            fancy:fb_ghost="true"
+            fancy:fb_textGravity="center" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_set_sleep_entry_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fancy:fb_text="SET"
+            fancy:fb_textSize="15sp"
+            fancy:fb_textColor="#212121"
+            fancy:fb_focusColor="#E0E0E0"
+            android:elevation="1dp"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            fancy:fb_iconPosition="left"
+            fancy:fb_ghost="true"
+            fancy:fb_textGravity="center" />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
