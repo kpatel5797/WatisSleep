@@ -1,6 +1,7 @@
 package com.example.james.watissleep.Activities;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -27,9 +28,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.james.watissleep.AlarmReceiver;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.FeedbackDialog;
 import com.example.james.watissleep.R;
-import com.example.james.watissleep.Database_Tables.SleepEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -155,6 +156,9 @@ public class MainActivity extends AppCompatActivity
             reset_btn.setVisibility(View.INVISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
+            // If the alarm is playing then discard all notifications that are still active
+            NotificationManager notifManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            notifManager.cancelAll();
         } else {
             wake_btn.setVisibility(View.INVISIBLE);
         }
