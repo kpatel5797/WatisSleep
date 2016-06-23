@@ -300,16 +300,18 @@ public class MainActivity extends AppCompatActivity
         final long amount_of_sleep = current_date_time_milliseconds - sleep_date_time_milliseconds;
 
         // array or images to choose as header for entry card TODO(JAMES): add more images (possibly db?)
-        final String[] images = {"http://science-all.com/images/wallpapers/nice-pic/nice-pic-3.jpg",
-                "http://science-all.com/images/wallpapers/nice-wallpapers/nice-wallpapers-20.jpg",
+        final String[] images = {"http://wallpapercave.com/wp/j7c1FtS.jpg",
+                "http://eskipaper.com/images/nice-wallpaper-5.jpg",
                 "http://eskipaper.com/images/nice-wallpapers-12.jpg",
                 "http://hdwallnpics.com/wp-content/gallery/nice-wallpapers-desktop/Nice-Desktop-Wallpapers-2.jpg",
                 "http://i.imgur.com/jcgo2Sr.jpg",
                 "http://4.bp.blogspot.com/-w3I5XQ1vWbg/Up6hKWsBRrI/AAAAAAAABss/I7_nbS_7wQ0/s1600/Nice+Wallpapers+(12).jpg",
-                "http://science-all.com/images/wallpapers/hd-beautiful-wallpapers/hd-beautiful-wallpapers-13.jpg",
+                "http://eskipaper.com/images/nice-backgrounds-8.jpg",
                 "http://g01.a.alicdn.com/kf/HTB1f1YeKXXXXXbzXVXXq6xXFXXXC/Home-Decor-Custom-Canvas-Prints-font-b-Nice-b-font-font-b-Wallpapers-b-font-font.jpg",
                 "https://s-media-cache-ak0.pinimg.com/736x/12/06/ea/1206ea4d881c8e540c819ae1b6b67671.jpg",
-                "http://eskipaper.com/images/nice-wallpaper-4.jpg"};
+                "http://eskipaper.com/images/nice-wallpaper-4.jpg",
+                "http://2.bp.blogspot.com/-pqiJBMYxA5E/UvmzMgtHQ9I/AAAAAAAAB3A/6YTiPUoRYqk/s1600/Nice-wallpaper+desktop+(1).jpg",
+                "http://www.whitegadget.com/attachments/pc-wallpapers/16374d1223299205-abstract-wallpapers-images-photos-picture-gallery-beautiful-abstract-wallpaper.jpg"};
 
         // make sure that the same image is not used twice
         int random_index = new Random().nextInt(images.length);
