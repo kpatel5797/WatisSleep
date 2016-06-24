@@ -1,5 +1,6 @@
 package com.example.james.watissleep.Activities;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,8 @@ public class SleepListActivity extends AppCompatActivity {
         // empty_view imageView and textView
         ImageView emptyViewImage = (ImageView) findViewById(R.id.empty_view_image);
         TextView emptyViewText = (TextView) findViewById(R.id.empty_view_text);
+        Typeface roboto_regular = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Regular.ttf");
+        emptyViewText.setTypeface(roboto_regular);
 
         if (sleep_data.isEmpty()) {
             ImageView screenHeader = (ImageView) findViewById(R.id.screen_header);
