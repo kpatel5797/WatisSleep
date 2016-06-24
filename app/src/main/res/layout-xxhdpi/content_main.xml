@@ -302,7 +302,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="205dp"
                 android:elevation="1dp"
-                android:onClick="onWakeAction"
+                android:onClick="onSnooze"
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_alignParentRight="false"
                 android:layout_alignParentTop="false"

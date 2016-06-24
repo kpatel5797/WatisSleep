@@ -34,6 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        // this is to handle the buttons ui
         editor.putBoolean("broadcast_received",true);
         editor.commit();
         // init the vibrator and play the vibration pattern

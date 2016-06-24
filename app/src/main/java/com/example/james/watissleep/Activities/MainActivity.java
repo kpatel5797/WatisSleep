@@ -46,9 +46,12 @@ public class MainActivity extends AppCompatActivity
     // Declare the alarm intent, the alarm manager, the calendar,
     // the pending intent and the minute and hour of the alarm
     Intent intentAlarm;
+    // alarmManager for the alarm
     AlarmManager alarmManager;
     Calendar c, time;
+    // hour and minute to set the alarm to; these are set in the timePicker dialog (set in onAlarmClick method)
     int hourToSet, minuteToSet;
+    // pending intent for the AlarmReceiver.class
     PendingIntent pendingIntent;
 
     @Override
@@ -81,6 +84,8 @@ public class MainActivity extends AppCompatActivity
         //TextView bed = (TextView) findViewById(R.id.bedText);
         TextView alarmText = (TextView) findViewById(R.id.alarmText);
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
+        // get the alarmTime string from shared prefs
+        alarmSet.setText(sharedPreferences.getString("alarmTime",""));
         alarmSet.setTypeface(roboto_thin);
         alarmText.setTypeface(typeface);
         //bed.setTypeface(typeface);
@@ -148,9 +153,6 @@ public class MainActivity extends AppCompatActivity
             confirm_btn.setVisibility(View.VISIBLE);
         }
 
-        // get the alarmTime string from shared prefs
-        alarmSet.setText(sharedPreferences.getString("alarmTime",""));
-
         FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
         if (sharedPreferences.getBoolean("broadcast_received",false) == true) {
             wake_btn.setVisibility(View.VISIBLE);
@@ -215,6 +217,61 @@ public class MainActivity extends AppCompatActivity
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
+    }
+
+    public void onSnooze(View view) {
+        // turn off the vibrator, turn off the alarm tone
+        // and cancel the pending intent
+        Vibrator currentVibrate = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        currentVibrate.cancel();
+        if (AlarmReceiver.getMediaPlayer() != null) {
+            AlarmReceiver.getMediaPlayer().stop();
+        }
+        // cancel the current pending intent
+        intentAlarm = new Intent(this, AlarmReceiver.class);
+        PendingIntent.getBroadcast(getApplicationContext(), 0, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
+
+        // set a calendar for 1 minute in future
+        // TODO(JAMES): get the snooze time from sharedPreferences (user should be able to set via preference activity)
+        Calendar snoozeTime = Calendar.getInstance();
+        snoozeTime.add(Calendar.MINUTE,1);
+
+        // set a new pendingIntent to broadcast to the AlarmReceiver in 1 min
+        intentAlarm = new Intent(this, AlarmReceiver.class);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intentAlarm,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime.getTimeInMillis(), pendingIntent);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("set_alarm_btn_visible",false);
+        editor.putBoolean("reset_alarm_btn_visible",false);
+        editor.putBoolean("confirm_alarm_btn_visible",false);
+        editor.putBoolean("cancel_alarm_btn_visible",false);
+        editor.putBoolean("alarm_confirmed",true);
+        editor.putBoolean("broadcast_received",false);
+
+        TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
+        alarmSet.setText("Alarm snoozed");
+        editor.putString("alarmTime","Alarm snoozed");
+
+        // set all the buttons to invisible
+        FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
+        FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
+        FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
+        FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
+        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
+        FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
+        set_alarm_btn.setVisibility(View.INVISIBLE);
+        reset_btn.setVisibility(View.INVISIBLE);
+        // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
+        cancel_btn.setVisibility(View.VISIBLE);
+        wake_btn.setVisibility(View.INVISIBLE);
+        snooze_btn.setVisibility(View.INVISIBLE);
+        confirm_btn.setVisibility(View.INVISIBLE);
+
+        editor.commit();
 
     }
 
