@@ -5,7 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.james.watissleep.R;
@@ -46,5 +50,25 @@ public class SleepListActivity extends AppCompatActivity {
         // set the header image
         ImageView header = (ImageView) findViewById(R.id.screen_header);
         Glide.with(this).load("http://science-all.com/images/wallpapers/nice-wallpaper/nice-wallpaper-17.jpg").centerCrop().into(header);
+
+        // empty_view imageView and textView
+        ImageView emptyViewImage = (ImageView) findViewById(R.id.empty_view_image);
+        TextView emptyViewText = (TextView) findViewById(R.id.empty_view_text);
+
+        if (sleep_data.isEmpty()) {
+            ImageView screenHeader = (ImageView) findViewById(R.id.screen_header);
+            screenHeader.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+            emptyViewImage.setVisibility(View.VISIBLE);
+            emptyViewImage.setAlpha(0.3f);
+            emptyViewText.setVisibility(View.VISIBLE);
+            emptyViewText.setAlpha(0.3f);
+            LinearLayout recyclerRoot = (LinearLayout) findViewById(R.id.recycler_root);
+            recyclerRoot.setGravity(Gravity.CENTER);
+        } else {
+            emptyViewImage.setVisibility(View.GONE);
+            emptyViewText.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/recycler_root"
     tools:context=".Activities.SleepListActivity" >
 
     <ImageView
@@ -18,4 +19,21 @@
         android:layout_height="match_parent"
         tools:context=".Activities.SleepListActivity"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/empty_view"
+        android:id="@+id/empty_view_image"
+        android:paddingBottom="20dp"
+        android:translationY="-30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oh no... You have no sleep entries to display"
+        android:layout_marginTop="24dp"
+        android:id="@+id/empty_view_text"
+        android:translationY="-30dp"/>
+
 </LinearLayout>
