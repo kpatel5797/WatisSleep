@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
+        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
         if (sharedPreferences.getBoolean("set_alarm_btn_visible",true) == true) {
             set_alarm_btn.setVisibility(View.VISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity
         FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
         if (sharedPreferences.getBoolean("broadcast_received",false) == true) {
             wake_btn.setVisibility(View.VISIBLE);
+            snooze_btn.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity
             notifManager.cancelAll();
         } else {
             wake_btn.setVisibility(View.INVISIBLE);
+            snooze_btn.setVisibility(View.INVISIBLE);
         }
 
         //##########################################################################################
@@ -279,11 +282,13 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
+        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.VISIBLE);
         reset_btn.setVisibility(View.INVISIBLE);
         cancel_btn.setVisibility(View.INVISIBLE);
         wake_btn.setVisibility(View.INVISIBLE);
+        snooze_btn.setVisibility(View.INVISIBLE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
         // handle (and show) the dialog
@@ -354,12 +359,14 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
+        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.INVISIBLE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
         cancel_btn.setVisibility(View.VISIBLE);
         wake_btn.setVisibility(View.INVISIBLE);
+        snooze_btn.setVisibility(View.INVISIBLE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
         // create a new entry into the sleepData table
