@@ -61,6 +61,7 @@ public class SleepListActivity extends AppCompatActivity {
         Typeface roboto_regular = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Regular.ttf");
         emptyViewText.setTypeface(roboto_regular);
 
+        // handle when the data is empty (show the emptyView)
         if (sleep_data.isEmpty()) {
             ImageView screenHeader = (ImageView) findViewById(R.id.screen_header);
             screenHeader.setVisibility(View.GONE);
