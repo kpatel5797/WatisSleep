@@ -38,27 +38,36 @@ public class EditSleepDialog extends AppCompatDialogFragment {
     public View onCreateView(LayoutInflater inflator, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflator.inflate(R.layout.edit_sleepentry_dialog,null);
         getDialog().setTitle("Edit The Sleep Entry");
+        // user can click outside the window to dismiss
         setCancelable(true);
 
+        // time and date string formats
         final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
 
+        // editText fields
         sleep_time_edit = (EditText) view.findViewById(R.id.sleep_time_edit);
         sleep_date_edit = (EditText) view.findViewById(R.id.sleep_date_edit);
         wake_time_edit = (EditText) view.findViewById(R.id.wake_time_edit);
         wake_date_edit = (EditText) view.findViewById(R.id.wake_date_edit);
 
+        // editText fields
         sleep_date_edit.setText(dateFormat.format(currentSleepEntry.getSleepTime()));
         sleep_time_edit.setText(timeFormat.format(currentSleepEntry.getSleepTime()));
         wake_time_edit.setText(timeFormat.format(currentSleepEntry.getWakeTime()));
         wake_date_edit.setText(dateFormat.format(currentSleepEntry.getWakeTime()));
 
-        // get the calendars for sleep and wake
+        // get the calendars for new sleep and wake times (to be set by user)
         final Calendar new_sleep_date_and_time = Calendar.getInstance();
         new_sleep_date_and_time.setTimeInMillis(currentSleepEntry.getSleepTime());
-
         final Calendar new_wake_date_and_time = Calendar.getInstance();
         new_wake_date_and_time.setTimeInMillis(currentSleepEntry.getWakeTime());
+
+        // keep a record of the old sleep and wake time in case user wants to undo change
+        final Calendar original_sleep = Calendar.getInstance();
+        original_sleep.setTimeInMillis(currentSleepEntry.getSleepTime());
+        final  Calendar original_wake = Calendar.getInstance();
+        original_wake.setTimeInMillis(currentSleepEntry.getWakeTime());
 
         // set the sleep_date
         sleep_date_edit.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +115,7 @@ public class EditSleepDialog extends AppCompatDialogFragment {
             }
         });
 
+        // set the wake_date
         wake_date_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +136,7 @@ public class EditSleepDialog extends AppCompatDialogFragment {
             }
         });
 
+        // set the wake_time
         wake_time_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,27 +163,46 @@ public class EditSleepDialog extends AppCompatDialogFragment {
             }
         });
 
+        // handle the user clicking the set button (entry is changed in DB)
         FancyButton btn_set = (FancyButton) view.findViewById(R.id.btn_set_sleep_entry_edit);
         btn_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Realm realm = Realm.getDefaultInstance();
+                final Realm realm = Realm.getDefaultInstance();
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
+                        // set the sleeptime and wake time to the one's that were set by the user
                         currentSleepEntry.setSleepTime(new_sleep_date_and_time.getTimeInMillis());
                         currentSleepEntry.setWakeTime(new_wake_date_and_time.getTimeInMillis());
                     }
                 });
+                // dismiss the dialog
                 dismiss();
-                Snackbar snackbar = Snackbar.make(itemView,"Sleep Entry Updated!",Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                // show a snackBar that tells the user that the sleep entry was updated
+                // also give the user the option to revert the entry back to what it was originally
                 sleepAdapter.notifyDataSetChanged();
+                Snackbar snackbar = Snackbar
+                        .make(itemView,"Sleep Entry Updated!",Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                realm.executeTransaction(new Realm.Transaction() {
+                                    @Override
+                                    public void execute(Realm realm) {
+                                        currentSleepEntry.setSleepTime(original_sleep.getTimeInMillis());
+                                        currentSleepEntry.setWakeTime(original_wake.getTimeInMillis());
+                                        sleepAdapter.notifyDataSetChanged();
+                                    }
+                                });
+                            }
+                        });
+                snackbar.show();
             }
         });
 
-
-
+        // handle the user clicking the cancel button
+        // nothing is changed in the DB and the dialog is dismissed
         FancyButton btn_cancel = (FancyButton) view.findViewById(R.id.btn_cancel_sleep_entry_edit);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
