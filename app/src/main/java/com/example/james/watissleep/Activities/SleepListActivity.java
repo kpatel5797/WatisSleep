@@ -2,21 +2,21 @@ package com.example.james.watissleep.Activities;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.bumptech.glide.Glide;
-import com.example.james.watissleep.R;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.james.watissleep.Adapters.SleepAdapter;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
+import com.example.james.watissleep.R;
 
 import java.util.Calendar;
 
@@ -43,6 +43,14 @@ public class SleepListActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new ScaleInTopAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        // init the header
+        RecyclerViewHeader recyclerViewHeader = (RecyclerViewHeader) findViewById(R.id.header);
+        recyclerViewHeader.attachTo(recyclerView);
+        ImageView header_view = (ImageView) findViewById(R.id.header_image);
+        Glide.with(this)
+                .load("http://images.all-free-download.com/images/wallpapers_large/interesting_3d_shapes_wallpaper_abstract_3d_wallpaper_151.jpg")
+                .diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(header_view);
+
         // init the adapter
         adapter = new SleepAdapter(getApplicationContext(),sleep_data,this);
         recyclerView.setAdapter(adapter);
@@ -50,10 +58,6 @@ public class SleepListActivity extends AppCompatActivity {
         // init the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.show();
-
-        // set the header image
-        ImageView header = (ImageView) findViewById(R.id.screen_header);
-        Glide.with(this).load("http://science-all.com/images/wallpapers/nice-wallpaper/nice-wallpaper-17.jpg").centerCrop().into(header);
 
         // empty_view imageView and textView
         ImageView emptyViewImage = (ImageView) findViewById(R.id.empty_view_image);
@@ -63,15 +67,12 @@ public class SleepListActivity extends AppCompatActivity {
 
         // handle when the data is empty (show the emptyView)
         if (sleep_data.isEmpty()) {
-            ImageView screenHeader = (ImageView) findViewById(R.id.screen_header);
-            screenHeader.setVisibility(View.GONE);
+            header_view.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
             emptyViewImage.setVisibility(View.VISIBLE);
             emptyViewImage.setAlpha(0.3f);
             emptyViewText.setVisibility(View.VISIBLE);
             emptyViewText.setAlpha(0.3f);
-            LinearLayout recyclerRoot = (LinearLayout) findViewById(R.id.recycler_root);
-            recyclerRoot.setGravity(Gravity.CENTER);
         } else {
             emptyViewImage.setVisibility(View.GONE);
             emptyViewText.setVisibility(View.GONE);
