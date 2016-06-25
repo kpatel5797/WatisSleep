@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // don't show a label on the toolbar
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // hide the toolbar but keep the functionality
         //toolbar.setVisibility(View.GONE);
