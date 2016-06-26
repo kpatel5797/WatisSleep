@@ -108,11 +108,19 @@ public class MainActivity extends AppCompatActivity
         ImageView time_image_background = (ImageView) findViewById(R.id.time_image_background);
 
         Glide.with(this).load("http://www.localwom.com/i/cool-pattern-free-wallpapers.jpg").centerCrop().into(centre_image);
-        Glide.with(this)
-                .load("https://4kwallpapers.co/wp-content/uploads/2015/09/blue-material-design-ultra-hd-wallpapers.png")
-                .centerCrop()
-                .crossFade()
-                .into(time_image_background);
+        if (Build.VERSION.SDK_INT >= 20) {
+            Glide.with(this)
+                    .load("https://4kwallpapers.co/wp-content/uploads/2015/09/blue-material-design-ultra-hd-wallpapers.png")
+                    .centerCrop()
+                    .crossFade()
+                    .into(time_image_background);
+        } else {
+            Glide.with(this)
+                    .load("https://cdn-images.xda-developers.com/direct/3/3/9/3/1/1/8/Design.jpg")
+                    .centerCrop()
+                    .crossFade()
+                    .into(time_image_background);
+        }
 
         TextView dateText = (TextView) findViewById(R.id.dateText);
         dateText.setTypeface(typeface);
