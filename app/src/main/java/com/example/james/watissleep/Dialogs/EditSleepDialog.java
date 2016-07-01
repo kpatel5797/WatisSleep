@@ -175,6 +175,7 @@ public class EditSleepDialog extends AppCompatDialogFragment {
                         // set the sleeptime and wake time to the one's that were set by the user
                         currentSleepEntry.setSleepTime(new_sleep_date_and_time.getTimeInMillis());
                         currentSleepEntry.setWakeTime(new_wake_date_and_time.getTimeInMillis());
+                        currentSleepEntry.setAmount_of_sleep(new_wake_date_and_time.getTimeInMillis() - new_sleep_date_and_time.getTimeInMillis());
                     }
                 });
                 // dismiss the dialog
@@ -192,6 +193,7 @@ public class EditSleepDialog extends AppCompatDialogFragment {
                                     public void execute(Realm realm) {
                                         currentSleepEntry.setSleepTime(original_sleep.getTimeInMillis());
                                         currentSleepEntry.setWakeTime(original_wake.getTimeInMillis());
+                                        currentSleepEntry.setAmount_of_sleep(original_wake.getTimeInMillis() - original_sleep.getTimeInMillis());
                                         sleepAdapter.notifyDataSetChanged();
                                     }
                                 });
