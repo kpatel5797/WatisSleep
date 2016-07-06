@@ -8,10 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,17 +31,27 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.db.chart.Tools;
+import com.db.chart.model.LineSet;
+import com.db.chart.model.Point;
+import com.db.chart.view.AxisController;
+import com.db.chart.view.ChartView;
+import com.db.chart.view.LineChartView;
 import com.example.james.watissleep.AlarmReceiver;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.FeedbackDialog;
 import com.example.james.watissleep.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+import io.realm.Sort;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
@@ -68,9 +79,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // don't show a label on the toolbar
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-        // hide the toolbar but keep the functionality
-        //toolbar.setVisibility(View.GONE);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // transparent toolbar
+        toolbar.getBackground().setAlpha(0);
 
         // set the statusBar color to primaryDark if the sdk is  > lollipop
         // otherwise it will be set to appcompat.dayNight theme
@@ -91,62 +102,21 @@ public class MainActivity extends AppCompatActivity
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Light.ttf");
         Typeface roboto_regular = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Regular.ttf");
         Typeface roboto_thin = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Thin.ttf");
-        TextView clock = (TextView) findViewById(R.id.alarmTime);
-        //TextView hey = (TextView) findViewById(R.id.hey);
-        //TextView bed = (TextView) findViewById(R.id.bedText);
-        TextView alarmText = (TextView) findViewById(R.id.alarmText);
-        TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        // get the alarmTime string from shared prefs
-        alarmSet.setText(sharedPreferences.getString("alarmTime",""));
-        alarmSet.setTypeface(roboto_thin);
-        alarmText.setTypeface(typeface);
-        //bed.setTypeface(typeface);
-        clock.setTypeface(roboto_regular);
-        //hey.setTypeface(typeface);
-
-        ImageView centre_image = (ImageView) findViewById(R.id.centre_image);
-        ImageView time_image_background = (ImageView) findViewById(R.id.time_image_background);
-
-        Glide.with(this).load("http://www.localwom.com/i/cool-pattern-free-wallpapers.jpg").centerCrop().into(centre_image);
-        if (Build.VERSION.SDK_INT >= 20) {
-            Glide.with(this)
-                    .load("https://4kwallpapers.co/wp-content/uploads/2015/09/blue-material-design-ultra-hd-wallpapers.png")
-                    .centerCrop()
-                    .crossFade()
-                    .into(time_image_background);
-        } else {
-            Glide.with(this)
-                    .load("https://cdn-images.xda-developers.com/direct/3/3/9/3/1/1/8/Design.jpg")
-                    .centerCrop()
-                    .crossFade()
-                    .into(time_image_background);
-        }
+        Typeface roboto_light = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Light.ttf");
 
         TextView dateText = (TextView) findViewById(R.id.dateText);
-        dateText.setTypeface(typeface);
+        dateText.setTypeface(roboto_thin);
         long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, MMMM dd");
-        String dateString = sdf.format(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
+        String dateString = dateFormat.format(date);
         dateText.setText(dateString);
 
-        // check if the hour is less than 6:00pm and more than 9:00am
-        time = Calendar.getInstance();
-        //TextView bedText = (TextView) findViewById(R.id.bedText);
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
-        // change from night theme to day theme at 9:00am and from day to night at 6:00pm
-        if (time.get(Calendar.HOUR_OF_DAY) >= 9 && time.get(Calendar.HOUR_OF_DAY) < 18) {
-            // change the header image, the background colour and
-            // the welcome text
-            mainLayout.setBackgroundColor(Color.parseColor("#E0E0E0"));
-            //bedText.setText("Enjoy Your Day!");
-        }
+        TextView timeText = (TextView) findViewById(R.id.timeText);
+        timeText.setTypeface(roboto_light);
 
-        // set the alarmSet text when the alarm is ringing
-        // TODO(James): This needs to be implemented as a listener so it can dynamically set the text
-        if (AlarmReceiver.getMediaPlayer() != null && AlarmReceiver.getMediaPlayer().isPlaying()) {
-            TextView setText = (TextView) findViewById(R.id.alarmSet);
-            setText.setText("WAKE UP!");
-        }
+        TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
+        alarmSet.setText(sharedPreferences.getString("alarmTime","NO ALARM SET"));
+        alarmSet.setTypeface(roboto_light);
 
         //############################# SHARED PREFERENCES #########################################
         // show the buttons based on the shared prefs
@@ -154,29 +124,27 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
-        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
+        LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
         if (sharedPreferences.getBoolean("set_alarm_btn_visible",true) == true) {
             set_alarm_btn.setVisibility(View.VISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
         } else if (sharedPreferences.getBoolean("alarm_confirmed",false) == true) {
-            set_alarm_btn.setVisibility(View.INVISIBLE);
+            set_alarm_btn.setVisibility(View.GONE);
             // TODO(JAMES):set this back to INVISIBLE, this is for testing purposes
             cancel_btn.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
         } else {
-            set_alarm_btn.setVisibility(View.INVISIBLE);
+            set_alarm_btn.setVisibility(View.GONE);
             cancel_btn.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.VISIBLE);
             confirm_btn.setVisibility(View.VISIBLE);
         }
 
-        FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
         if (sharedPreferences.getBoolean("broadcast_received",false) == true) {
-            wake_btn.setVisibility(View.VISIBLE);
-            snooze_btn.setVisibility(View.VISIBLE);
+            snooze_wake_layout.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
@@ -184,11 +152,92 @@ public class MainActivity extends AppCompatActivity
             NotificationManager notifManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
             notifManager.cancelAll();
         } else {
-            wake_btn.setVisibility(View.INVISIBLE);
-            snooze_btn.setVisibility(View.INVISIBLE);
+            snooze_wake_layout.setVisibility(View.GONE);
+        }
+
+        if (AlarmReceiver.getMediaPlayer() != null && AlarmReceiver.getMediaPlayer().isPlaying()) {
+            TextView setText = (TextView) findViewById(R.id.alarmSet);
+            setText.setText("Wake up");
         }
 
         //##########################################################################################
+
+        // Load the header image
+        ImageView header_image = (ImageView) findViewById(R.id.header_image);
+        Glide.with(this)
+                .load("http://www.androidguys.com/wp-content/uploads/2015/12/Poly-Lakeside.jpg")
+                .centerCrop()
+                .into(header_image);
+        Realm realm = Realm.getDefaultInstance();
+
+        // Line chart for the home screen
+        LineChartView sleep_hours_chart = (LineChartView) findViewById(R.id.hours_sleep_chart);
+        // realm results
+        RealmResults<SleepEntry> hours_sleep_list = realm.where(SleepEntry.class).findAll().sort("wakeTime", Sort.DESCENDING);
+        if (hours_sleep_list.size() >= 5) {
+            int size_hours_sleep_list = hours_sleep_list.size();
+            // array that will store the most recent 5 amounts of sleep (values) and sleep times (labels)
+            ArrayList<Float> recent_five_hours_sleep_arraylist = new ArrayList<Float>();
+            ArrayList<String> recent_five_sleep_time_arraylist = new ArrayList<String>();
+            // iterate through the realm results
+            for (int i = 4; i >= 0; --i) {
+                // get the number of hours of sleep
+                Long current_amount_sleep = (long) TimeUnit.MILLISECONDS.toHours(hours_sleep_list.get(i).getAmount_of_sleep());
+                Long current_sleep_time = hours_sleep_list.get(i).getSleepTime();
+                // date formatter for label
+                SimpleDateFormat sdf = new SimpleDateFormat("EE MMM, dd");
+
+
+                recent_five_hours_sleep_arraylist.add(current_amount_sleep.floatValue());
+                recent_five_sleep_time_arraylist.add(sdf.format(current_sleep_time));
+            }
+
+            float[] recent_five_hours_sleep = new float[recent_five_hours_sleep_arraylist.size()];
+            int x = 0;
+            for (Float f : recent_five_hours_sleep_arraylist) {
+                recent_five_hours_sleep[x++] = (f != null ? f : Float.NaN);
+            }
+            String[] recent_five_sleep_time =
+                    recent_five_sleep_time_arraylist.toArray(new String[recent_five_sleep_time_arraylist.size()]);
+
+            LineSet dataset = new LineSet(recent_five_sleep_time, recent_five_hours_sleep);
+            dataset.setColor(Color.parseColor("#0290c3"))
+                    .setThickness(Tools.fromDpToPx(3))
+                    .setSmooth(true);
+            for (int i = 0; i < recent_five_sleep_time.length; i++) {
+                Point point = (Point) dataset.getEntry(i);
+                point.setRadius(20.0f);
+                point.setStrokeThickness(10.0f);
+                point.setColor(Color.parseColor("#ffffff"));
+                point.setStrokeColor(Color.parseColor("#0290c3"));
+            }
+
+            sleep_hours_chart.addData(dataset);
+            Paint thresPaint = new Paint();
+            thresPaint.setColor(Color.parseColor("#FF3D00"));
+            thresPaint.setStyle(Paint.Style.STROKE);
+            thresPaint.setAntiAlias(true);
+            thresPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
+            thresPaint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+
+            Paint gridPaint = new Paint();
+            gridPaint.setColor(Color.parseColor("#EEEEEE"));
+            gridPaint.setPathEffect(new DashPathEffect(new float[]{10, 20}, 0));
+            gridPaint.setStyle(Paint.Style.STROKE);
+            gridPaint.setAntiAlias(true);
+            gridPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
+
+            sleep_hours_chart.setBorderSpacing(Tools.fromDpToPx(30))
+                    .setXLabels(AxisController.LabelPosition.OUTSIDE)
+                    .setLabelsColor(Color.parseColor("#000000"))
+                    .setYLabels(AxisController.LabelPosition.OUTSIDE)
+                    .setXAxis(true)
+                    .setAxisBorderValues(0, 12, 2)
+                    .setGrid(ChartView.GridType.HORIZONTAL,12,1,gridPaint)
+                    .setYAxis(true);
+            sleep_hours_chart.setAxisColor(Color.parseColor("#000000"));
+            sleep_hours_chart.show();
+        }
 
 
 
@@ -280,15 +329,13 @@ public class MainActivity extends AppCompatActivity
         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
-        FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
-        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
+        LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
-        set_alarm_btn.setVisibility(View.INVISIBLE);
+        set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
         cancel_btn.setVisibility(View.VISIBLE);
-        wake_btn.setVisibility(View.INVISIBLE);
-        snooze_btn.setVisibility(View.INVISIBLE);
+        snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
         editor.commit();
@@ -307,9 +354,8 @@ public class MainActivity extends AppCompatActivity
         cancel_btn.setVisibility(View.INVISIBLE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
-
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText("");
+        alarmSet.setText("NO ALARM SET");
 
         // cancel the current pending intent
         intentAlarm = new Intent(this, AlarmReceiver.class);
@@ -323,7 +369,7 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("cancel_alarm_btn_visible",false);
         editor.putBoolean("confirm_alarm_btn_visible",false);
         editor.putBoolean("alarm_confirmed",false);
-        editor.putString("alarmTime","");
+        editor.putString("alarmTime","NO ALARM SET");
         editor.commit();
     }
 
@@ -336,14 +382,9 @@ public class MainActivity extends AppCompatActivity
             AlarmReceiver.getMediaPlayer().stop();
         }
 
-        // make the alarmSet textView blank
-        TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText("");
-
         // cancel the current pending intent
         intentAlarm = new Intent(this, AlarmReceiver.class);
         PendingIntent.getBroadcast(getApplicationContext(), 0, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
-
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -352,20 +393,21 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("confirm_alarm_btn_visible",false);
         editor.putBoolean("cancel_alarm_btn_visible",false);
         editor.putBoolean("broadcast_received",false);
-        editor.putString("alarmTime","");
+        editor.putString("alarmTime","NO ALARM SET");
         editor.putBoolean("alarm_confirmed",false);
+
+        TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
+        alarmSet.setText("NO ALARM SET");
 
         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
-        FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
-        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
+        LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.VISIBLE);
         reset_btn.setVisibility(View.INVISIBLE);
         cancel_btn.setVisibility(View.INVISIBLE);
-        wake_btn.setVisibility(View.INVISIBLE);
-        snooze_btn.setVisibility(View.INVISIBLE);
+        snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
         // handle (and show) the dialog
@@ -435,15 +477,13 @@ public class MainActivity extends AppCompatActivity
         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
-        FancyButton wake_btn = (FancyButton) findViewById(R.id.btn_wake);
-        FancyButton snooze_btn = (FancyButton) findViewById(R.id.btn_snooze);
+        LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
-        set_alarm_btn.setVisibility(View.INVISIBLE);
+        set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
         cancel_btn.setVisibility(View.VISIBLE);
-        wake_btn.setVisibility(View.INVISIBLE);
-        snooze_btn.setVisibility(View.INVISIBLE);
+        snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
         // create a new entry into the sleepData table
@@ -481,7 +521,7 @@ public class MainActivity extends AppCompatActivity
                         confirm_btn.setVisibility(View.VISIBLE);
 
                         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
-                        set_alarm_btn.setVisibility(View.INVISIBLE);
+                        set_alarm_btn.setVisibility(View.GONE);
 
                         // call the onSleep method
                         onSleepAction(view);
@@ -499,15 +539,12 @@ public class MainActivity extends AppCompatActivity
                         String time = String.format("%d:%02d %s", hourOfDay, minute, AM_PM);
 
                         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-                        alarmSet.setText(time);
-                        Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Thin.ttf");
-                        alarmSet.setTypeface(typeface);
-                        alarmSet.setTextSize(35);
+                        alarmSet.setText("Alarm set for " + time);
 
                         // save the alarm time
                         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("alarmTime",time.toString());
+                        editor.putString("alarmTime","Alarm set for " +time);
                         editor.putBoolean("set_alarm_btn_visible",false);
                         editor.putBoolean("reset_alarm_btn_visible",true);
                         editor.putBoolean("cancel_alarm_btn_visible",true);
@@ -529,40 +566,27 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_settings) {
             // RUN THE INTENT AFTER A DELAY OF 250 MILLISECONDS
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-                    intent.putExtra("FROM_ACTIVITY","MainActivity");
-                    startActivity(intent);
-                }
-            }, 250);
+            Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+            intent.putExtra("FROM_ACTIVITY","MainActivity");
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in,R.anim.left_out);
+
         } else if (id == R.id.nav_stats) {
             //CharSequence statsMessage = "This is supposed to start the Statistics activity!";
             //Toast.makeText(MainActivity.this, statsMessage, Toast.LENGTH_SHORT).show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(getApplicationContext(),PieActivity.class);
-                    intent.putExtra("FROM_ACTIVITY","MainActivity");
-                    startActivity(intent);
-                }
-            }, 250);
+            Intent intent = new Intent(getApplicationContext(),PieActivity.class);
+            intent.putExtra("FROM_ACTIVITY","MainActivity");
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in,R.anim.left_out);
         } else if (id == R.id.nav_edit) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(getApplicationContext(),SleepListActivity.class);
-                    intent.putExtra("FROM_ACTIVITY","MainActivity");
-                    startActivity(intent);
-                }
-            }, 250);
+            Intent intent = new Intent(getApplicationContext(),SleepListActivity.class);
+            intent.putExtra("FROM_ACTIVITY","MainActivity");
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in,R.anim.left_out);
         } else if (id == R.id.nav_info) {
             CharSequence infoMessage = "This is supposed to start the About activity!";
             Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

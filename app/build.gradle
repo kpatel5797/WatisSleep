@@ -40,4 +40,7 @@ dependencies {
     // recyclerView libs
     compile 'jp.wasabeef:recyclerview-animators:2.2.3'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
+
+    // william chart
+    compile 'com.diogobernardino:williamchart:2.2'
 }
