@@ -1,6 +1,7 @@
 package com.example.james.watissleep.Adapters;
 
 import android.content.Context;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,6 +135,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
                     editSleepDialog.setSleepEntry(current);
                     editSleepDialog.setSleepAdapter(thisSleepAdapter);
                     editSleepDialog.setItemView(itemView);
+                    editSleepDialog.setStyle(DialogFragment.STYLE_NORMAL,R.style.MyCustomTheme);
 
                     // show the dialog
                     editSleepDialog.show(sleepListActivity.getSupportFragmentManager(),"hello");
