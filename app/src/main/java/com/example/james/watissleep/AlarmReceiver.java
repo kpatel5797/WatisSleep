@@ -99,7 +99,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public void displayNotification(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(com.example.james.watissleep.R.mipmap.ic_launcher);
         builder.setContentTitle("Test Notification");
         builder.setContentText("This notification will open up the alarm screen");
         builder.setAutoCancel(true);
