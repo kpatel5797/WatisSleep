@@ -87,4 +87,16 @@ public class SleepListActivity extends AppCompatActivity {
             recyclerView.setBackgroundColor(Color.parseColor("#424242"));
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
 }
