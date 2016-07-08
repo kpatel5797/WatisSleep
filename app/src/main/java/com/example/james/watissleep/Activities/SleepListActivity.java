@@ -1,6 +1,5 @@
 package com.example.james.watissleep.Activities;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -17,8 +16,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.james.watissleep.Adapters.SleepAdapter;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.R;
-
-import java.util.Calendar;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -77,14 +74,6 @@ public class SleepListActivity extends AppCompatActivity {
             emptyViewImage.setVisibility(View.GONE);
             emptyViewText.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-        }
-
-        // check if the hour is less than 6:00pm and more than 9:00am
-        Calendar time = Calendar.getInstance();
-        // change from night theme to day theme at 9:00am and from day to night at 6:00pm
-        if (time.get(Calendar.HOUR_OF_DAY) < 9 || time.get(Calendar.HOUR_OF_DAY) >= 18) {
-            // change the background colour
-            recyclerView.setBackgroundColor(Color.parseColor("#424242"));
         }
     }
 
