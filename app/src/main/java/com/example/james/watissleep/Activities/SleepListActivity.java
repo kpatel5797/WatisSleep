@@ -1,12 +1,15 @@
 package com.example.james.watissleep.Activities;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,10 +28,13 @@ import jp.wasabeef.recyclerview.animators.ScaleInTopAnimator;
 public class SleepListActivity extends AppCompatActivity {
 
     private SleepAdapter adapter;
+    // total amount scrolled in the page
+    int totalScrolled = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         setContentView(R.layout.activity_list);
         Realm realm = Realm.getDefaultInstance();
 
@@ -45,15 +51,22 @@ public class SleepListActivity extends AppCompatActivity {
         recyclerViewHeader.attachTo(recyclerView);
         ImageView header_view = (ImageView) findViewById(R.id.header_image);
         Glide.with(this)
-                .load("http://images.all-free-download.com/images/wallpapers_large/interesting_3d_shapes_wallpaper_abstract_3d_wallpaper_151.jpg")
-                .diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(header_view);
+                .load("http://topnature.xyz/wp-content/uploads/2016/05/oceans-serene-landscape-faroe-islands-beauty-ocean-sky-cliff-water-mountain-free-wallpapers-1600x1080.jpg")
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .into(header_view);
 
         // init the adapter
         adapter = new SleepAdapter(getApplicationContext(),sleep_data,this);
         recyclerView.setAdapter(adapter);
 
+        // colour of the actionBar
+        final ColorDrawable actionBarColor = new ColorDrawable(Color.parseColor("#9E9E9E"));
+        actionBarColor.setAlpha(0);
+
         // init the actionbar
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(actionBarColor);
         actionBar.show();
 
         // empty_view imageView and textView
@@ -75,6 +88,23 @@ public class SleepListActivity extends AppCompatActivity {
             emptyViewText.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
+
+        // handles the scrolling of the recyclerView
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                // increment/decrement the totalScrolled based on the user scrolling
+                totalScrolled += dy;
+                // 255 is the max value for setAlpha method
+                if (totalScrolled / 2 <= 255) {
+                    actionBarColor.setAlpha(totalScrolled / 2);
+                    getSupportActionBar().setBackgroundDrawable(actionBarColor);
+                } else {
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#9E9E9E")));
+                }
+            }
+        });
     }
 
     @Override

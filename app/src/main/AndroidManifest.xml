@@ -41,7 +41,8 @@
 
         <activity android:name=".Activities.SleepListActivity"
             android:parentActivityName=".Activities.MainActivity"
-            android:label="List of Sleep Entries"></activity>
+            android:label="List of Sleep Entries"
+            android:theme="@style/AppTheme.SleepListActivity"></activity>
     </application>
 
 </manifest>

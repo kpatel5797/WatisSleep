@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recycler_root"
-    tools:context=".Activities.SleepListActivity">
+    tools:context=".Activities.SleepListActivity" >
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +17,8 @@
     <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="50dp"
         android:layout_gravity="center_horizontal|top">
 
         <ImageView
@@ -27,7 +28,6 @@
 
     </com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
 
-    <!-- empty_view layout -->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,8 +40,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Oh no... You have no sleep entries to display"
         android:layout_gravity="center"
+        android:text="Oh no... You have no sleep entries to display"
         android:layout_marginTop="90dp"
         android:id="@+id/empty_view_text" />
 
