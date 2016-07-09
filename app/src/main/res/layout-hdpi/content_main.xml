@@ -1,174 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
-    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activities.MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:background="#424242">
+    android:background="#ffffff"
+    android:weightSum="10">
 
-    <ImageView
-        android:id="@+id/city_image"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:contentDescription=""
-        android:background="@drawable/city" />
+        android:layout_height="0dp"
+        android:layout_weight="3.1">
 
-    <ImageView
-        android:id="@+id/imagePlayIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/drawer_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="open"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:cropToPadding="false"
-        android:focusable="false"
-        android:elevation="10dp"
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground" />
-
-    <android.support.v7.widget.CardView
-        android:layout_width="fill_parent"
-        android:layout_height="110dp"
-        android:layout_gravity="center_horizontal"
-        app:cardElevation="5dp"
-        cardCornerRadius="3dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/header_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Hey There! The current time is:"
-                android:id="@+id/hey"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:typeface="normal"
-                android:textSize="15sp" />
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeText"
+            android:textSize="30sp"
+            android:layout_marginLeft="32dp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="100dp"/>
 
-            <TextClock
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/alarmTime"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textSize="30sp"
-                android:layout_marginLeft="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateText"
+            android:text="PLACEHOLDER FOR THE DATE"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="140dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="You should probably go to bed soon!"
-                android:id="@+id/bedText"
-                android:typeface="normal"
-                android:layout_alignParentBottom="true"
-                android:layout_alignLeft="@+id/alarmTime"
-                android:layout_alignStart="@+id/alarmTime"
-                android:textSize="15sp"
-                android:layout_marginBottom="5dp" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="fill_parent"
-        android:layout_height="160dp"
-        android:layout_gravity="center_horizontal"
-        app:cardElevation="5dp"
-        cardCornerRadius="3dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="#424242"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistics Preview"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:layout_marginLeft="12dp"/>
+
+    </LinearLayout>
+
+    <com.db.chart.view.LineChartView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.6"
+        android:padding="12dp"
+        android:id="@+id/hours_sleep_chart" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="#424242"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alarm"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:layout_marginLeft="12dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.2"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:weightSum="4">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:src="@drawable/ic_alarm_black_24dp"
+                android:alpha="0.2"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Your alarm is currently set to:"
-                android:id="@+id/alarmText"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:typeface="normal"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:id="@+id/alarmSet"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textSize="30sp"
-                android:layout_marginLeft="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/primary_dark_material_dark" />
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="NO ALARM SET"
+                android:alpha="0.5"/>
 
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.11"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/three_button_layout"
+            android:visibility="gone"
+            android:weightSum="3"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
 
             <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_alarm"
-                android:layout_width="110dp"
-                android:layout_height="40dp"
-                fancy:fb_text="SET ALARM"
-                fancy:fb_textSize="10sp"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_radius="10dp"
-                fancy:fb_defaultColor="#7ab800"
-                fancy:fb_focusColor="#9bd823"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                fancy:fb_text="RESET ALARM"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
-                fancy:fb_borderColor="#FFFFFF"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:elevation="1dp"
-                android:onClick="onAlarmClick" />
+                fancy:fb_borderColor="#26C6DA"
+                fancy:fb_textSize="10sp"
+                fancy:fb_radius="0dp"
+                fancy:fb_focusColor="#BDBDBD"
+                fancy:fb_defaultColor="#26C6DA"
+                android:onClick="onAlarmClick"
+                android:id="@+id/btn_reset_alarm" />
 
             <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_cancel"
-                android:layout_width="110dp"
-                android:layout_height="40dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 fancy:fb_text="CANCEL ALARM"
-                fancy:fb_textSize="10sp"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_radius="10dp"
-                fancy:fb_defaultColor="#FF5722"
-                fancy:fb_focusColor="#D84315"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
-                fancy:fb_borderColor="#FFFFFF"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:elevation="1dp"
-                android:onClick="onWakeAction" />
+                fancy:fb_textSize="10sp"
+                fancy:fb_borderColor="#FF3D00"
+                fancy:fb_radius="0dp"
+                fancy:fb_focusColor="#BDBDBD"
+                fancy:fb_defaultColor="#FF3D00"
+                android:onClick="onCancelAlarm"
+                android:id="@+id/btn_cancel" />
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                fancy:fb_text="CONFIRM ALARM"
+                fancy:fb_textColor="#ffffff"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_borderColor="#FFCA28"
+                fancy:fb_textSize="10sp"
+                fancy:fb_radius="0dp"
+                fancy:fb_focusColor="#BDBDBD"
+                fancy:fb_defaultColor="#FFCA28"
+                android:onClick="onConfirmAlarm"
+                android:id="@+id/btn_confirm_alarm" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            fancy:fb_text="SET ALARM"
+            fancy:fb_textColor="#ffffff"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_borderColor="#66BB6A"
+            fancy:fb_radius="0dp"
+            fancy:fb_focusColor="#BDBDBD"
+            fancy:fb_defaultColor="#66BB6A"
+            android:onClick="onAlarmClick"
+            android:id="@+id/btn_alarm"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/snooze_wake_layout"
+            android:weightSum="2"
+            android:layout_weight="0.8"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                fancy:fb_text="WAKE UP"
+                fancy:fb_textColor="#ffffff"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_borderColor="#00695C"
+                fancy:fb_radius="0dp"
+                fancy:fb_focusColor="#BDBDBD"
+                fancy:fb_defaultColor="#00695C"
+                android:onClick="onWakeAction"
+                android:id="@+id/btn_wake" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                fancy:fb_text="SNOOZE"
+                fancy:fb_textColor="#ffffff"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_borderColor="#1565C0"
+                fancy:fb_radius="0dp"
+                fancy:fb_focusColor="#BDBDBD"
+                fancy:fb_defaultColor="#1565C0"
+                android:onClick="onSnooze"
+                android:id="@+id/btn_snooze" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

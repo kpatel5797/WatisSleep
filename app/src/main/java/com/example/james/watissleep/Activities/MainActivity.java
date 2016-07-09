@@ -125,19 +125,23 @@ public class MainActivity extends AppCompatActivity
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
+        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
         if (sharedPreferences.getBoolean("set_alarm_btn_visible",true) == true) {
             set_alarm_btn.setVisibility(View.VISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
+            three_btn_layout.setVisibility(View.GONE);
         } else if (sharedPreferences.getBoolean("alarm_confirmed",false) == true) {
             set_alarm_btn.setVisibility(View.GONE);
+            three_btn_layout.setVisibility(View.VISIBLE);
             // TODO(JAMES):set this back to INVISIBLE, this is for testing purposes
             cancel_btn.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
         } else {
             set_alarm_btn.setVisibility(View.GONE);
+            three_btn_layout.setVisibility(View.VISIBLE);
             cancel_btn.setVisibility(View.VISIBLE);
             reset_btn.setVisibility(View.VISIBLE);
             confirm_btn.setVisibility(View.VISIBLE);
@@ -148,6 +152,7 @@ public class MainActivity extends AppCompatActivity
             reset_btn.setVisibility(View.INVISIBLE);
             cancel_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
+            three_btn_layout.setVisibility(View.GONE);
             // If the alarm is playing then discard all notifications that are still active
             NotificationManager notifManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
             notifManager.cancelAll();
@@ -330,13 +335,15 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
+        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
         cancel_btn.setVisibility(View.VISIBLE);
-        snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
+        snooze_wake_layout.setVisibility(View.GONE);
+        three_btn_layout.setVisibility(View.VISIBLE);
 
         editor.commit();
 
@@ -350,6 +357,8 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
+        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
+        three_btn_layout.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         cancel_btn.setVisibility(View.INVISIBLE);
         confirm_btn.setVisibility(View.INVISIBLE);
@@ -403,10 +412,12 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
+        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.VISIBLE);
         reset_btn.setVisibility(View.INVISIBLE);
         cancel_btn.setVisibility(View.INVISIBLE);
+        three_btn_layout.setVisibility(View.GONE);
         snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
@@ -478,11 +489,13 @@ public class MainActivity extends AppCompatActivity
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
         LinearLayout snooze_wake_layout = (LinearLayout) findViewById(R.id.snooze_wake_layout);
+        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
         set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
         cancel_btn.setVisibility(View.VISIBLE);
+        three_btn_layout.setVisibility(View.VISIBLE);
         snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
 
@@ -516,9 +529,11 @@ public class MainActivity extends AppCompatActivity
                         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);
                         FancyButton cancel_btn = (FancyButton) findViewById(R.id.btn_cancel);
                         FancyButton confirm_btn = (FancyButton) findViewById(R.id.btn_confirm_alarm);
+                        LinearLayout three_btn_layout = (LinearLayout) findViewById(R.id.three_button_layout);
                         reset_btn.setVisibility(View.VISIBLE);
                         cancel_btn.setVisibility(View.VISIBLE);
                         confirm_btn.setVisibility(View.VISIBLE);
+                        three_btn_layout.setVisibility(View.VISIBLE);
 
                         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
                         set_alarm_btn.setVisibility(View.GONE);

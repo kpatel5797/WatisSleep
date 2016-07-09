@@ -128,28 +128,29 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4"/>
+            android:layout_weight="1.11"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:id="@+id/three_button_layout"
+            android:visibility="gone"
             android:weightSum="3"
-            android:layout_weight="0.7"
+            android:layout_weight="0.8"
             android:orientation="horizontal">
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
                 fancy:fb_text="RESET ALARM"
-                fancy:fb_textColor="#76FF03"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
-                fancy:fb_borderColor="#76FF03"
+                fancy:fb_borderColor="#26C6DA"
                 fancy:fb_textSize="10sp"
-                fancy:fb_radius="5dp"
+                fancy:fb_radius="0dp"
                 fancy:fb_focusColor="#BDBDBD"
-                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_defaultColor="#26C6DA"
                 android:onClick="onAlarmClick"
                 android:id="@+id/btn_reset_alarm" />
 
@@ -157,15 +158,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
                 fancy:fb_text="CANCEL ALARM"
-                fancy:fb_textColor="#FF3D00"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
                 fancy:fb_textSize="10sp"
                 fancy:fb_borderColor="#FF3D00"
-                fancy:fb_radius="5dp"
+                fancy:fb_radius="0dp"
                 fancy:fb_focusColor="#BDBDBD"
-                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_defaultColor="#FF3D00"
                 android:onClick="onCancelAlarm"
                 android:id="@+id/btn_cancel" />
 
@@ -173,16 +173,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
                 fancy:fb_text="CONFIRM ALARM"
-                fancy:fb_textColor="#F57F17"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
-                fancy:fb_borderColor="#F57F17"
+                fancy:fb_borderColor="#FFCA28"
                 fancy:fb_textSize="10sp"
-                fancy:fb_radius="5dp"
+                fancy:fb_radius="0dp"
                 fancy:fb_focusColor="#BDBDBD"
-                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_defaultColor="#FFCA28"
                 android:onClick="onConfirmAlarm"
                 android:id="@+id/btn_confirm_alarm" />
 
@@ -191,17 +189,14 @@
         <mehdi.sakout.fancybuttons.FancyButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_weight="0.8"
             fancy:fb_text="SET ALARM"
-            fancy:fb_textColor="#FF4081"
+            fancy:fb_textColor="#ffffff"
             fancy:fb_borderWidth="1dp"
-            fancy:fb_borderColor="#FF4081"
-            fancy:fb_radius="5dp"
+            fancy:fb_borderColor="#66BB6A"
+            fancy:fb_radius="0dp"
             fancy:fb_focusColor="#BDBDBD"
-            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_defaultColor="#66BB6A"
             android:onClick="onAlarmClick"
             android:id="@+id/btn_alarm"/>
 
@@ -210,8 +205,7 @@
             android:layout_height="0dp"
             android:id="@+id/snooze_wake_layout"
             android:weightSum="2"
-            android:layout_weight="0.7"
-            android:layout_marginTop="5dp"
+            android:layout_weight="0.8"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -219,14 +213,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
                 fancy:fb_text="WAKE UP"
-                fancy:fb_textColor="#00695C"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
                 fancy:fb_borderColor="#00695C"
-                fancy:fb_radius="5dp"
+                fancy:fb_radius="0dp"
                 fancy:fb_focusColor="#BDBDBD"
-                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_defaultColor="#00695C"
                 android:onClick="onWakeAction"
                 android:id="@+id/btn_wake" />
 
@@ -234,18 +227,15 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="12dp"
                 fancy:fb_text="SNOOZE"
-                fancy:fb_textColor="#1565C0"
+                fancy:fb_textColor="#ffffff"
                 fancy:fb_borderWidth="1dp"
                 fancy:fb_borderColor="#1565C0"
-                fancy:fb_radius="5dp"
+                fancy:fb_radius="0dp"
                 fancy:fb_focusColor="#BDBDBD"
-                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_defaultColor="#1565C0"
                 android:onClick="onSnooze"
                 android:id="@+id/btn_snooze" />
-
 
         </LinearLayout>
 
