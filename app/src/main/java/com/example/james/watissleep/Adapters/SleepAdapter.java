@@ -1,6 +1,7 @@
 package com.example.james.watissleep.Adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,7 +60,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         Date wake_date = new Date(current.getWakeTime());
 
         // date/time format
-        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd       hh:mm aa");
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd   hh:mm aa");
 
 
         String sleep_display = format.format(sleep_date);
@@ -68,6 +69,13 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         // set the text on the card
         holder.sleepTime.setText(sleep_display);
         holder.wakeTime.setText(wake_display);
+
+        Typeface roboto_condensed_light = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/RobotoCondensed-Light.ttf");
+        Typeface roboto_regular = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/Roboto-Regular.ttf");
+        holder.sleepTime.setTypeface(roboto_condensed_light);
+        holder.wakeTime.setTypeface(roboto_condensed_light);
+        holder.sleepText.setTypeface(roboto_regular);
+        holder.wakeText.setTypeface(roboto_regular);
 
         // set the header image
         if (data.get(position).getHeader_image() == null) {
@@ -103,6 +111,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView sleepTime;
         TextView wakeTime;
+        TextView wakeText, sleepText;
         FancyButton deleteButton;
         FancyButton editButton;
         ImageView headerImage;
@@ -145,6 +154,8 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
             headerImage = (ImageView) itemView.findViewById(R.id.recycler_header);
             sleepTime = (TextView) itemView.findViewById(R.id.sleep_Time);
             wakeTime = (TextView) itemView.findViewById(R.id.wake_Time);
+            wakeText = (TextView) itemView.findViewById(R.id.wake);
+            sleepText = (TextView) itemView.findViewById(R.id.sleep);
 
         }
     }
