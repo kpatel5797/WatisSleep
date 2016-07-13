@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
             snooze_wake_layout.setVisibility(View.GONE);
         }
 
-        if (AlarmReceiver.getMediaPlayer() != null && AlarmReceiver.getMediaPlayer().isPlaying()) {
+        if (AlarmReceiver.getMediaPlayer() != null) {
             TextView setText = (TextView) findViewById(R.id.alarmSet);
             setText.setText("Wake up");
         }
