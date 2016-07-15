@@ -59,7 +59,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         // of the MainActivity class
 
         // display the notification
-        displayNotification(context);
+        if (sharedPreferences.getBoolean("send_notification",true) == true) {
+            displayNotification(context);
+        }
 
         // wake the device
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);

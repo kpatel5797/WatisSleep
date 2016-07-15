@@ -52,6 +52,23 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         });
 
+        SwitchPreference notifications = (SwitchPreference) findPreference("notification_preference");
+        notifications.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                boolean current = (Boolean) newValue;
+                if (current == true) {
+                    editor.putBoolean("send_notification",true);
+                } else {
+                    editor.putBoolean("send_notification",false);
+                }
+                editor.commit();
+                return true;
+            }
+        });
+
         ListPreference snoozePreference = (ListPreference) findPreference("snooze_preference");
         snoozePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
