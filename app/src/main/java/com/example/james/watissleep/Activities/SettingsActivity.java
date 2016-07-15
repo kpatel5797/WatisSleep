@@ -27,11 +27,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // handle changing the settings theme (light/dark theme)
-        time = Calendar.getInstance();
-        if (time.get(Calendar.HOUR_OF_DAY) < 9 || time.get(Calendar.HOUR_OF_DAY) >= 18) {
-            setTheme(R.style.PreferenceTheme);
-        }
+
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs);
