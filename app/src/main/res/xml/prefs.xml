@@ -32,7 +32,7 @@
             android:title="Snooze Duration"
             android:entries="@array/SnoozeOptions"
             android:entryValues="@array/SnoozeData"
-            android:defaultValue="10"
+            android:defaultValue="2"
             android:summary="%s"
             />
         <SwitchPreference

@@ -55,6 +55,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         });
 
+        
+
         final AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 
 
