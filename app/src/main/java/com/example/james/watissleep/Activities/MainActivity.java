@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
             snooze_wake_layout.setVisibility(View.GONE);
         }
 
-        if (AlarmReceiver.getMediaPlayer() != null) {
+        if (AlarmReceiver.getMediaPlayer() != null && sharedPreferences.getBoolean("broadcast_received",false) == true) {
             TextView setText = (TextView) findViewById(R.id.alarmSet);
             setText.setText("Wake up");
         }
@@ -209,10 +209,11 @@ public class MainActivity extends AppCompatActivity
             dataset.setColor(Color.parseColor("#0290c3"))
                     .setThickness(Tools.fromDpToPx(3))
                     .setSmooth(true);
+            float screen_density = getResources().getDisplayMetrics().density;
             for (int i = 0; i < recent_five_sleep_time.length; i++) {
                 Point point = (Point) dataset.getEntry(i);
-                point.setRadius(20.0f);
-                point.setStrokeThickness(10.0f);
+                point.setRadius(screen_density * 5.0f);
+                point.setStrokeThickness(screen_density * 2.5f);
                 point.setColor(Color.parseColor("#ffffff"));
                 point.setStrokeColor(Color.parseColor("#0290c3"));
             }
