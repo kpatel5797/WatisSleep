@@ -307,17 +307,6 @@ public class MainActivity extends AppCompatActivity
         intentAlarm = new Intent(this, AlarmReceiver.class);
         PendingIntent.getBroadcast(getApplicationContext(), 0, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
 
-        // set a calendar for 1 minute in future
-        // TODO(JAMES): get the snooze time from sharedPreferences (user should be able to set via preference activity)
-        Calendar snoozeTime = Calendar.getInstance();
-        snoozeTime.add(Calendar.MINUTE,1);
-
-        // set a new pendingIntent to broadcast to the AlarmReceiver in 1 min
-        intentAlarm = new Intent(this, AlarmReceiver.class);
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intentAlarm,PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime.getTimeInMillis(), pendingIntent);
-
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("set_alarm_btn_visible",false);
@@ -327,9 +316,24 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("alarm_confirmed",true);
         editor.putBoolean("broadcast_received",false);
 
+        // set a calendar for 1 minute in future
+        // TODO(JAMES): get the snooze time from sharedPreferences (user should be able to set via preference activity)
+        int amount_to_snooze = sharedPreferences.getInt("snooze_amount_minutes",10);
+        Calendar snoozeTime = Calendar.getInstance();
+        snoozeTime.add(Calendar.MINUTE,amount_to_snooze);
+        // set a new pendingIntent to broadcast to the AlarmReceiver in 1 min
+        intentAlarm = new Intent(this, AlarmReceiver.class);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intentAlarm,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime.getTimeInMillis(), pendingIntent);
+
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText("Alarm snoozed");
-        editor.putString("alarmTime","Alarm snoozed");
+        if (amount_to_snooze > 1) {
+            alarmSet.setText(String.format("Alarm snoozed for %d Minutes",amount_to_snooze));
+        } else {
+            alarmSet.setText(String.format("Alarm snoozed for %d Minute",amount_to_snooze));
+        }
+        editor.putString("alarmTime",String.format("Alarm snoozed for %d Minutes",amount_to_snooze));
 
         // set all the buttons to invisible
         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);

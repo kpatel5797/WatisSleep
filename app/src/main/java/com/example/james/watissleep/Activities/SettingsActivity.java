@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.v4.app.NavUtils;
@@ -55,7 +56,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         });
 
-        
+        ListPreference snoozePreference = (ListPreference) findPreference("snooze_preference");
+        snoozePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                String current = (String) newValue;
+                int value = Integer.parseInt(current);
+                editor.putInt("snooze_amount_minutes",value);
+                editor.commit();
+                return true;
+            }
+        });
 
         final AudioManager audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 
