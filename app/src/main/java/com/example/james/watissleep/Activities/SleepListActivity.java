@@ -1,6 +1,5 @@
 package com.example.james.watissleep.Activities;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -61,7 +60,7 @@ public class SleepListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // colour of the actionBar
-        final ColorDrawable actionBarColor = new ColorDrawable(Color.parseColor("#9E9E9E"));
+        final ColorDrawable actionBarColor = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
         actionBarColor.setAlpha(0);
 
         // init the actionbar
@@ -101,7 +100,7 @@ public class SleepListActivity extends AppCompatActivity {
                     actionBarColor.setAlpha(totalScrolled / 2);
                     getSupportActionBar().setBackgroundDrawable(actionBarColor);
                 } else {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#9E9E9E")));
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
                 }
             }
         });
