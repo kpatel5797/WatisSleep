@@ -43,4 +43,7 @@ dependencies {
 
     // william chart
     compile 'com.diogobernardino:williamchart:2.2'
+
+    // circular imageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
