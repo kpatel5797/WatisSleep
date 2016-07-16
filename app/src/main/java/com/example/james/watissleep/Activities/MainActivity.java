@@ -524,8 +524,8 @@ public class MainActivity extends AppCompatActivity
     public void onAlarmClick(View view) {
 
         final Calendar c = Calendar.getInstance();
-        int mHour = c.get(Calendar.HOUR_OF_DAY);
-        int mMin = c.get(Calendar.MINUTE);
+        final int mHour = c.get(Calendar.HOUR_OF_DAY);
+        final int mMin = c.get(Calendar.MINUTE);
 
         TimePickerDialog dialog =  new TimePickerDialog(this,
                 new TimePickerDialog.OnTimeSetListener() {
@@ -548,6 +548,14 @@ public class MainActivity extends AppCompatActivity
                         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
                         set_alarm_btn.setVisibility(View.GONE);
 
+                        // check if alarm is set for tomorrow
+                        boolean set_for_tomorrow;
+                        if (hourOfDay < mHour || (hourOfDay == mHour && minute < mMin)) {
+                            set_for_tomorrow = true;
+                        } else {
+                            set_for_tomorrow = false;
+                        }
+
                         // call the onSleep method
                         onSleepAction(view);
 
@@ -564,12 +572,20 @@ public class MainActivity extends AppCompatActivity
                         String time = String.format("%d:%02d %s", hourOfDay, minute, AM_PM);
 
                         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-                        alarmSet.setText("Alarm set for " + time);
+                        if (set_for_tomorrow) {
+                            alarmSet.setText("Alarm set for " + time + " (Tomorrow)");
+                        } else {
+                            alarmSet.setText("Alarm set for " + time);
+                        }
 
                         // save the alarm time
                         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("alarmTime","Alarm set for " +time);
+                        if (set_for_tomorrow) {
+                            editor.putString("alarmTime", "Alarm set for " + time + " (Tomorrow)");
+                        } else {
+                            editor.putString("alarmTime", "Alarm set for " + time);
+                        }
                         editor.putBoolean("set_alarm_btn_visible",false);
                         editor.putBoolean("reset_alarm_btn_visible",true);
                         editor.putBoolean("cancel_alarm_btn_visible",true);
