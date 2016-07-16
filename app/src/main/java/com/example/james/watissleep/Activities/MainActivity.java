@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity
         Typeface roboto_thin = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Thin.ttf");
         Typeface roboto_light = Typeface.createFromAsset(getAssets(),"fonts/RobotoTTF/Roboto-Light.ttf");
 
+        TextView graph_header = (TextView) findViewById(R.id.graph_header_homescreen);
+        TextView alarm_header = (TextView) findViewById(R.id.alarm_header_homescreen);
+        graph_header.setTypeface(roboto_light);
+        alarm_header.setTypeface(roboto_light);
+
         TextView dateText = (TextView) findViewById(R.id.dateText);
         dateText.setTypeface(roboto_thin);
         long date = System.currentTimeMillis();
