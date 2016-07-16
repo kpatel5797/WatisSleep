@@ -22,7 +22,7 @@ import com.example.james.watissleep.R;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
-import jp.wasabeef.recyclerview.animators.ScaleInTopAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 public class SleepListActivity extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class SleepListActivity extends AppCompatActivity {
 
         // init the recyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setItemAnimator(new ScaleInTopAnimator());
+        recyclerView.setItemAnimator(new SlideInRightAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         // init the header
