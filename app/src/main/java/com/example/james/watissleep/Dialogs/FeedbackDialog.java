@@ -1,11 +1,13 @@
 package com.example.james.watissleep.Dialogs;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.james.watissleep.Database_Tables.FeedbackEntry;
 import com.example.james.watissleep.R;
@@ -30,6 +32,13 @@ public class FeedbackDialog extends AppCompatDialogFragment {
         ImageView bad_img = (ImageView) view.findViewById(R.id.bad_img);
         ImageView ok_img = (ImageView) view.findViewById(R.id.ok_img);
         ImageView good_img = (ImageView) view.findViewById(R.id.good_img);
+        TextView bad_txt = (TextView) view.findViewById(R.id.bad_txt);
+        TextView ok_txt = (TextView) view.findViewById(R.id.ok_txt);
+        TextView good_txt = (TextView) view.findViewById(R.id.good_txt);
+        Typeface roboto_light = Typeface.createFromAsset(view.getContext().getAssets(),"fonts/RobotoTTF/Roboto-Light.ttf");
+        bad_txt.setTypeface(roboto_light);
+        ok_txt.setTypeface(roboto_light);
+        good_txt.setTypeface(roboto_light);
         final Realm realm = Realm.getDefaultInstance();
 
         bad_img.setOnClickListener(new View.OnClickListener() {
