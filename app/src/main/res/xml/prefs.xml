@@ -43,7 +43,7 @@
             />
         <EditTextPreference
             android:key="homescreen_header_preference"
-            android:title="Change Homescreen Header Image"
+            android:title="Homescreen Header Image"
             android:summary="Comming Soon"
             android:enabled="false" />
         <Preference
