@@ -67,7 +67,38 @@
         android:layout_height="0dp"
         android:layout_weight="2.6"
         android:padding="12dp"
-        android:id="@+id/hours_sleep_chart" />
+        android:id="@+id/hours_sleep_chart"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.6"
+        android:id="@+id/empty_graph_view"
+        android:weightSum="4"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:src="@drawable/empty_graph"
+            android:alpha="0.7"
+            android:padding="0dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/empty_graph_view_text"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:text="Oh no... You don't have enough sleep data to make a graph!"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
 
 
     <LinearLayout

@@ -248,6 +248,14 @@ public class MainActivity extends AppCompatActivity
                     .setYAxis(true);
             sleep_hours_chart.setAxisColor(Color.parseColor("#000000"));
             sleep_hours_chart.show();
+            LinearLayout empty_graph_view = (LinearLayout) findViewById(R.id.empty_graph_view);
+            empty_graph_view.setVisibility(View.GONE);
+        } else {
+            sleep_hours_chart.setVisibility(View.GONE);
+            LinearLayout empty_graph_view = (LinearLayout) findViewById(R.id.empty_graph_view);
+            empty_graph_view.setVisibility(View.VISIBLE);
+            TextView empty_graph_view_text = (TextView) findViewById(R.id.empty_graph_view_text);
+            empty_graph_view_text.setTypeface(roboto_thin);
         }
 
 
