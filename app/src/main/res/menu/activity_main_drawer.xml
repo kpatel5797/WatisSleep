@@ -20,6 +20,9 @@
                             android:title="About"
                             android:icon="@drawable/info"
                             />
+                        <item android:id="@+id/send_feedback"
+                            android:title="Send Feedback"
+                            />
                 </menu>
         </item>
 

@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -635,6 +636,17 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_info) {
             CharSequence infoMessage = "This is supposed to start the About activity!";
             Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.send_feedback) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("message/rfc822");
+            // TODO: make a developer email which will receive feedback on app improvements, etc.
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"james_harris@outlook.com"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "WatisSleep Feedback!");
+            try {
+                startActivity(Intent.createChooser(intent, "Send your feedback!!"));
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(MainActivity.this, "There are no email clients installed... You cannot send feedback to the developer :(", Toast.LENGTH_SHORT).show();
+            }
         }
         return true;
     }
