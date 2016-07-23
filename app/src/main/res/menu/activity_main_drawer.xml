@@ -8,20 +8,21 @@
 
                         <item android:id="@+id/nav_stats"
                             android:title="Statistics"
-                            android:icon="@drawable/stats"
+                            android:icon="@drawable/chart_line"
                             />
 
                         <item android:id="@+id/nav_edit"
                             android:title="Add/Edit Entries"
-                            android:icon="@drawable/ic_menu_manage"
+                            android:icon="@drawable/wrench"
                             />
 
                         <item android:id="@+id/nav_info"
                             android:title="About"
-                            android:icon="@drawable/info"
+                            android:icon="@drawable/information_variant"
                             />
                         <item android:id="@+id/send_feedback"
                             android:title="Send Feedback"
+                            android:icon="@drawable/pencil"
                             />
                 </menu>
         </item>
