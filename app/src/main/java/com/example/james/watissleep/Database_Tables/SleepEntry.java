@@ -10,15 +10,15 @@ public class SleepEntry extends RealmObject {
     long wakeTime;
     long amount_of_sleep;
 
-    public String getHeader_image() {
-        return header_image;
+    public String getHeader_color() {
+        return header_color;
     }
 
-    public void setHeader_image(String header_image) {
-        this.header_image = header_image;
+    public void setHeader_color(String header_color) {
+        this.header_color = header_color;
     }
 
-    String header_image;
+    String header_color;
 
     public SleepEntry() {
 
@@ -28,7 +28,7 @@ public class SleepEntry extends RealmObject {
         this.sleepTime = sleepTime;
         this.wakeTime = wakeTime;
         this.amount_of_sleep = amount_of_sleep;
-        this.header_image = header_image;
+        this.header_color = header_image;
     }
 
     public long getSleepTime() {

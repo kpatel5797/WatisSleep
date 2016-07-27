@@ -11,14 +11,14 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="#EEEEEE"
         tools:context=".Activities.SleepListActivity"
         />
 
     <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="8dp"
         android:layout_gravity="center_horizontal|top">
 

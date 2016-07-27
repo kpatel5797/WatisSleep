@@ -50,7 +50,7 @@ public class SleepListActivity extends AppCompatActivity {
         recyclerViewHeader.attachTo(recyclerView);
         ImageView header_view = (ImageView) findViewById(R.id.header_image);
         Glide.with(this)
-                .load("http://topnature.xyz/wp-content/uploads/2016/05/oceans-serene-landscape-faroe-islands-beauty-ocean-sky-cliff-water-mountain-free-wallpapers-1600x1080.jpg")
+                .load("https://warpnet-media.s3.amazonaws.com/c87133e3d521e85d320f7f5b2241cd3bf658cd255f1d87c315fa40fd")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(header_view);
@@ -76,6 +76,7 @@ public class SleepListActivity extends AppCompatActivity {
 
         // handle when the data is empty (show the emptyView)
         if (sleep_data.isEmpty()) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
             header_view.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
             emptyViewImage.setVisibility(View.VISIBLE);

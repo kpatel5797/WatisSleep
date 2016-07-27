@@ -1,17 +1,15 @@
 package com.example.james.watissleep.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.james.watissleep.Activities.SleepListActivity;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.EditSleepDialog;
@@ -78,11 +76,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         holder.wakeText.setTypeface(roboto_regular);
 
         // set the header image
-        if (data.get(position).getHeader_image() == null) {
-            holder.headerImage.setVisibility(View.GONE);
-        } else {
-            Glide.with(holder.headerImage.getContext()).load(current.getHeader_image()).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(holder.headerImage);
-        }
+        holder.headerColor.setBackgroundColor(Color.parseColor(current.getHeader_color()));
 
 
     }
@@ -114,7 +108,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         TextView wakeText, sleepText;
         FancyButton deleteButton;
         FancyButton editButton;
-        ImageView headerImage;
+        View headerColor;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -151,7 +145,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
                 }
             });
 
-            headerImage = (ImageView) itemView.findViewById(R.id.recycler_header);
+            headerColor = (View) itemView.findViewById(R.id.color_label);
             sleepTime = (TextView) itemView.findViewById(R.id.sleep_Time);
             wakeTime = (TextView) itemView.findViewById(R.id.wake_Time);
             wakeText = (TextView) itemView.findViewById(R.id.wake);

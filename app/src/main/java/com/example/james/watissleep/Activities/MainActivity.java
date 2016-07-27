@@ -455,23 +455,25 @@ public class MainActivity extends AppCompatActivity
         final long amount_of_sleep = current_date_time_milliseconds - sleep_date_time_milliseconds;
 
         // array or images to choose as header for entry card TODO(JAMES): add more images (possibly db?)
-        final String[] images = {"http://wallpapercave.com/wp/j7c1FtS.jpg",
-                "http://eskipaper.com/images/nice-wallpaper-5.jpg",
-                "http://eskipaper.com/images/nice-wallpapers-12.jpg",
-                "http://hdwallnpics.com/wp-content/gallery/nice-wallpapers-desktop/Nice-Desktop-Wallpapers-2.jpg",
-                "http://i.imgur.com/jcgo2Sr.jpg",
-                "http://4.bp.blogspot.com/-w3I5XQ1vWbg/Up6hKWsBRrI/AAAAAAAABss/I7_nbS_7wQ0/s1600/Nice+Wallpapers+(12).jpg",
-                "http://eskipaper.com/images/nice-backgrounds-8.jpg",
-                "http://g01.a.alicdn.com/kf/HTB1f1YeKXXXXXbzXVXXq6xXFXXXC/Home-Decor-Custom-Canvas-Prints-font-b-Nice-b-font-font-b-Wallpapers-b-font-font.jpg",
-                "https://s-media-cache-ak0.pinimg.com/736x/12/06/ea/1206ea4d881c8e540c819ae1b6b67671.jpg",
-                "http://eskipaper.com/images/nice-wallpaper-4.jpg",
-                "http://2.bp.blogspot.com/-pqiJBMYxA5E/UvmzMgtHQ9I/AAAAAAAAB3A/6YTiPUoRYqk/s1600/Nice-wallpaper+desktop+(1).jpg",
-                "http://www.whitegadget.com/attachments/pc-wallpapers/16374d1223299205-abstract-wallpapers-images-photos-picture-gallery-beautiful-abstract-wallpaper.jpg"};
+        final String[] colors = {"#e53935",
+                "#D81B60",
+                "#8E24AA",
+                "#5E35B1",
+                "#3949AB",
+                "#1E88E5",
+                "#039BE5",
+                "#00ACC1",
+                "#00897B",
+                "#43A047",
+                "#7CB342",
+                "#C0CA33",
+                "#FDD835",
+                "#FFB300"};
 
         // make sure that the same image is not used twice
-        int random_index = new Random().nextInt(images.length);
+        int random_index = new Random().nextInt(colors.length);
         while (random_index == sharedPreferences.getInt("previous_image_index",0)) {
-            random_index = new Random().nextInt(images.length);
+            random_index = new Random().nextInt(colors.length);
         }
         editor.putInt("previous_image_index",random_index);
 
@@ -486,7 +488,7 @@ public class MainActivity extends AppCompatActivity
                 s.setSleepTime(sleep_date_time_milliseconds);
                 s.setWakeTime(current_date_time_milliseconds);
                 s.setAmount_of_sleep(amount_of_sleep);
-                s.setHeader_image(images[image_index]);
+                s.setHeader_color(colors[image_index]);
             }
         });
 
