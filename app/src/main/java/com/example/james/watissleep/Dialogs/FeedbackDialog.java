@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ public class FeedbackDialog extends AppCompatDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflator, ViewGroup container, Bundle savedInstanceState) {
         View view = inflator.inflate(R.layout.wake_feedback_fragment,null);
-        getDialog().setTitle("How was your sleep?");
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setCancelable(false);
         final Calendar c = Calendar.getInstance();
 
@@ -35,7 +36,9 @@ public class FeedbackDialog extends AppCompatDialogFragment {
         TextView bad_txt = (TextView) view.findViewById(R.id.bad_txt);
         TextView ok_txt = (TextView) view.findViewById(R.id.ok_txt);
         TextView good_txt = (TextView) view.findViewById(R.id.good_txt);
+        TextView how_was_sleep = (TextView) view.findViewById(R.id.how_was_sleep);
         Typeface roboto_light = Typeface.createFromAsset(view.getContext().getAssets(),"fonts/RobotoTTF/Roboto-Light.ttf");
+        how_was_sleep.setTypeface(roboto_light);
         bad_txt.setTypeface(roboto_light);
         ok_txt.setTypeface(roboto_light);
         good_txt.setTypeface(roboto_light);
