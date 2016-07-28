@@ -58,22 +58,21 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         Date wake_date = new Date(current.getWakeTime());
 
         // date/time format
-        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM dd   hh:mm aa");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
+        SimpleDateFormat timesFormat = new SimpleDateFormat("hh:mm aa");
 
 
-        String sleep_display = format.format(sleep_date);
-        String wake_display = format.format(wake_date);
+        String sleep_date_display = dateFormat.format(sleep_date);
+        String sleep_times_display = timesFormat.format(sleep_date) + " - " + timesFormat.format(wake_date);
 
         // set the text on the card
-        holder.sleepTime.setText(sleep_display);
-        holder.wakeTime.setText(wake_display);
+        holder.sleepTimes.setText(sleep_times_display);
+        holder.sleepDate.setText(sleep_date_display);
 
-        Typeface roboto_condensed_light = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/RobotoCondensed-Light.ttf");
-        Typeface roboto_regular = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/Roboto-Regular.ttf");
-        holder.sleepTime.setTypeface(roboto_condensed_light);
-        holder.wakeTime.setTypeface(roboto_condensed_light);
-        holder.sleepText.setTypeface(roboto_regular);
-        holder.wakeText.setTypeface(roboto_regular);
+        Typeface roboto_condensed_light = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/Roboto-Medium.ttf");
+        Typeface roboto_condensed_bold = Typeface.createFromAsset(sleepListActivity.getAssets(),"fonts/RobotoTTF/RobotoCondensed-Bold.ttf");
+        holder.sleepTimes.setTypeface(roboto_condensed_bold);
+        holder.sleepDate.setTypeface(roboto_condensed_light);
 
         // set the header image
         holder.headerColor.setBackgroundColor(Color.parseColor(current.getHeader_color()));
@@ -103,9 +102,8 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView sleepTime;
-        TextView wakeTime;
-        TextView wakeText, sleepText;
+        TextView sleepTimes;
+        TextView sleepDate;
         FancyButton deleteButton;
         FancyButton editButton;
         View headerColor;
@@ -146,10 +144,8 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
             });
 
             headerColor = (View) itemView.findViewById(R.id.color_label);
-            sleepTime = (TextView) itemView.findViewById(R.id.sleep_Time);
-            wakeTime = (TextView) itemView.findViewById(R.id.wake_Time);
-            wakeText = (TextView) itemView.findViewById(R.id.wake);
-            sleepText = (TextView) itemView.findViewById(R.id.sleep);
+            sleepTimes = (TextView) itemView.findViewById(R.id.sleep_times);
+            sleepDate = (TextView) itemView.findViewById(R.id.sleep_date);
 
         }
     }
