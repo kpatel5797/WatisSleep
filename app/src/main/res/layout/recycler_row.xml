@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:id="@+id/sleep_date"
                 android:layout_marginLeft="24dp"
@@ -56,12 +56,12 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="24dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.4"
+                    android:layout_marginTop="3.5dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3.5dp"
                     android:alpha="0.5"
-                    android:background="@drawable/clock"/>
+                    android:background="@drawable/clock" />
 
                 <TextView
                     android:layout_width="0dp"
