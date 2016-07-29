@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         // get the current sleep entry
         SleepEntry current = data.get(position);
 
@@ -77,6 +78,32 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
         // set the header image
         holder.headerColor.setBackgroundColor(Color.parseColor(current.getHeader_color()));
 
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                try {
+                    SleepEntry current = data.get(position);
+
+                    // show the edit dialog
+                    // set the sleepAdapter to this class
+                    // set the current sleepEntry to current
+                    EditSleepDialog editSleepDialog = new EditSleepDialog();
+
+                    // set all the params for the dialog
+                    editSleepDialog.setSleepEntry(current);
+                    editSleepDialog.setSleepAdapter(thisSleepAdapter);
+                    editSleepDialog.setItemView(holder.itemView);
+                    editSleepDialog.setStyle(DialogFragment.STYLE_NORMAL, R.style.MyCustomTheme);
+
+                    // show the dialog
+                    editSleepDialog.show(sleepListActivity.getSupportFragmentManager(), "hello");
+                    return true;
+                } catch (NullPointerException e) {
+                    Log.e("Error: ","Could not load the edit dialog, null pointer");
+                    return false;
+                }
+            }
+        });
 
     }
 
