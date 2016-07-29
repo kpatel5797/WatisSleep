@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.3"
+            android:layout_weight="2.6"
             android:weightSum="4"
             android:orientation="vertical">
 
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@android:color/black"
                 android:id="@+id/sleep_date"
                 android:layout_marginLeft="24dp"
@@ -57,11 +57,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="24dp"
                     android:layout_weight="0.4"
-                    android:layout_marginTop="3.5dp"
+                    android:scaleType="center"
+                    android:scaleX="0.9"
+                    android:scaleY="0.77"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="3.5dp"
                     android:alpha="0.5"
-                    android:background="@drawable/clock" />
+                    android:background="@drawable/clock"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -81,50 +82,13 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            xmlns:fancy="http://schemas.android.com/apk/res-auto"
-            android:orientation="horizontal"
-            android:layout_weight="1.5"
-            android:weightSum="2"
-            android:gravity="bottom">
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_delete_sleep_entry"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                fancy:fb_text="DELETE"
-                fancy:fb_textSize="10sp"
-                fancy:fb_textColor="#212121"
-                fancy:fb_focusColor="#E0E0E0"
-                android:elevation="1dp"
-                android:padding="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                fancy:fb_iconPosition="left"
-                fancy:fb_ghost="true"/>
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_edit_sleep_entry"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                fancy:fb_text="EDIT"
-                fancy:fb_textSize="10sp"
-                fancy:fb_textColor="#00BCD4"
-                fancy:fb_focusColor="#E0E0E0"
-                android:elevation="1dp"
-                android:padding="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                fancy:fb_iconPosition="left"
-                fancy:fb_ghost="true"/>
-
-        </LinearLayout>
+            android:layout_weight="1"
+            android:id="@+id/face_image"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"/>
 
     </LinearLayout>
 

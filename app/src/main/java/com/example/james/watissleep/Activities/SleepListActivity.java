@@ -64,6 +64,7 @@ public class SleepListActivity extends AppCompatActivity {
         final ColorDrawable actionBarColor = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
         actionBarColor.setAlpha(0);
 
+        // swipe to dismiss
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {

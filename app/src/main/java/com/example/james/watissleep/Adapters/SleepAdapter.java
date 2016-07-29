@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.james.watissleep.Activities.SleepListActivity;
+import com.example.james.watissleep.Database_Tables.FeedbackEntry;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.EditSleepDialog;
 import com.example.james.watissleep.R;
@@ -21,7 +23,7 @@ import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import mehdi.sakout.fancybuttons.FancyButton;
+import io.realm.Sort;
 
 /**
  * Created by James on 16-06-21.
@@ -53,6 +55,18 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         // get the current sleep entry
         SleepEntry current = data.get(position);
+
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<FeedbackEntry> feedbacks = realm.where(FeedbackEntry.class).findAll().sort("feedbackDate", Sort.DESCENDING);
+        FeedbackEntry current_face = feedbacks.get(position);
+
+        if (current_face.getFeedbackString().equals("good")) {
+            holder.faceImage.setImageResource(R.drawable.happy_face);
+        } else if (current_face.getFeedbackString().equals("ok")) {
+            holder.faceImage.setImageResource(R.drawable.neutral_face);
+        } else if (current_face.getFeedbackString().equals("bad")) {
+            holder.faceImage.setImageResource(R.drawable.sad_face);
+        }
 
         // get the sleepTime and wakeTime
         Date sleep_date = new Date(current.getSleepTime());
@@ -105,6 +119,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
             }
         });
 
+
     }
 
     public int getPosition(int position) {
@@ -118,10 +133,12 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
 
     public void delete(final int position) {
         Realm realm = Realm.getDefaultInstance();
+        final RealmResults<FeedbackEntry> feedbacks = realm.where(FeedbackEntry.class).findAll();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 data.deleteFromRealm(position); // Delete and remove object directly
+                feedbacks.deleteFromRealm(position);
             }
         });
         // notify the adapter that an item was deleted
@@ -131,45 +148,13 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView sleepTimes;
         TextView sleepDate;
-        FancyButton deleteButton;
-        FancyButton editButton;
+        ImageView faceImage;
         View headerColor;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-            deleteButton = (FancyButton) itemView.findViewById(R.id.btn_delete_sleep_entry);
-            editButton = (FancyButton) itemView.findViewById(R.id.btn_edit_sleep_entry);
 
-            // delete the entry when the delete button on the card is clicked
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delete(getAdapterPosition());
-                }
-            });
-
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // get the current sleep entry
-                    SleepEntry current = data.get(getAdapterPosition());
-
-                    // show the edit dialog
-                    // set the sleepAdapter to this class
-                    // set the current sleepEntry to current
-                    EditSleepDialog editSleepDialog = new EditSleepDialog();
-
-                    // set all the params for the dialog
-                    editSleepDialog.setSleepEntry(current);
-                    editSleepDialog.setSleepAdapter(thisSleepAdapter);
-                    editSleepDialog.setItemView(itemView);
-                    editSleepDialog.setStyle(DialogFragment.STYLE_NORMAL,R.style.MyCustomTheme);
-
-                    // show the dialog
-                    editSleepDialog.show(sleepListActivity.getSupportFragmentManager(),"hello");
-                }
-            });
-
+            faceImage = (ImageView) itemView.findViewById(R.id.face_image);
             headerColor = (View) itemView.findViewById(R.id.color_label);
             sleepTimes = (TextView) itemView.findViewById(R.id.sleep_times);
             sleepDate = (TextView) itemView.findViewById(R.id.sleep_date);
