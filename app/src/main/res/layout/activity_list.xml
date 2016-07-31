@@ -18,7 +18,7 @@
     <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="180dp"
         android:layout_gravity="center_horizontal|top">
 
         <ImageView

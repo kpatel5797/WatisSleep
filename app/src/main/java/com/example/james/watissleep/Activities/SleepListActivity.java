@@ -51,7 +51,7 @@ public class SleepListActivity extends AppCompatActivity {
         recyclerViewHeader.attachTo(recyclerView);
         ImageView header_view = (ImageView) findViewById(R.id.header_image);
         Glide.with(this)
-                .load("https://warpnet-media.s3.amazonaws.com/c87133e3d521e85d320f7f5b2241cd3bf658cd255f1d87c315fa40fd")
+                .load("http://i.imgur.com/KZZyESg.jpg")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(header_view);
