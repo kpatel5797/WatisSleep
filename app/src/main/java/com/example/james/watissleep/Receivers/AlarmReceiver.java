@@ -1,4 +1,4 @@
-package com.example.james.watissleep;
+package com.example.james.watissleep.Receivers;
 
 import android.app.Notification;
 import android.app.NotificationManager;

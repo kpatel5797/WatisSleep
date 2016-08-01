@@ -41,6 +41,10 @@
             android:defaultValue="true"
             android:summary="Allow WatisSleep To Send Notifications"
             />
+        <Preference android:key="delete_database"
+            android:title="Delete Database"
+            android:summary="Clear all your sleep data and start fresh"
+            />
         <EditTextPreference
             android:key="homescreen_header_preference"
             android:title="Homescreen Header Image"

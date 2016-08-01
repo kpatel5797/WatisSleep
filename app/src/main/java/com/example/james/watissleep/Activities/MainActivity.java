@@ -38,7 +38,7 @@ import com.db.chart.model.Point;
 import com.db.chart.view.AxisController;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
-import com.example.james.watissleep.AlarmReceiver;
+import com.example.james.watissleep.Receivers.AlarmReceiver;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.FeedbackDialog;
 import com.example.james.watissleep.R;

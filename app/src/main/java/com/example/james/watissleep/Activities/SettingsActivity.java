@@ -1,6 +1,7 @@
 package com.example.james.watissleep.Activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -9,13 +10,18 @@ import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 
 import com.example.james.watissleep.AppCompatPreferenceActivity;
+import com.example.james.watissleep.Database_Tables.FeedbackEntry;
+import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.R;
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
 import java.util.Calendar;
+
+import io.realm.Realm;
 
 /**
  * Created by James on 16-05-11.
@@ -79,6 +85,34 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 int value = Integer.parseInt(current);
                 editor.putInt("snooze_amount_minutes",value);
                 editor.commit();
+                return true;
+            }
+        });
+
+        Preference delete_database_preference = findPreference("delete_database");
+        delete_database_preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SettingsActivity.this);
+                alertDialogBuilder.setMessage("No... Don't do it! You worked too hard to delete your precious sleep data!")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Realm realm = Realm.getDefaultInstance();
+                                realm.beginTransaction();
+                                realm.delete(FeedbackEntry.class);
+                                realm.delete(SleepEntry.class);
+                                realm.commitTransaction();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
                 return true;
             }
         });
