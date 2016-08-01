@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity
         // Load the header image
         ImageView header_image = (ImageView) findViewById(R.id.header_image);
         Glide.with(this)
-                .load("http://orig12.deviantart.net/ef42/f/2015/341/d/6/flat_landscape__winter_edition__by_jovicasmileski-d9jbz70.jpg")
+                .load("https://hd.unsplash.com/photo-1469820578517-4086c8a154df")
                 .centerCrop()
                 .into(header_image);
         Realm realm = Realm.getDefaultInstance();
