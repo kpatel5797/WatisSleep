@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -45,6 +48,10 @@ public class SleepListActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new SlideInRightAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        SpannableString spannableString = new SpannableString("Sleep Entries");
+        spannableString.setSpan(new TypefaceSpan("RobotoTTF/RobotoCondensed-Bold.ttf"), 0, spannableString.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // init the header
         RecyclerViewHeader recyclerViewHeader = (RecyclerViewHeader) findViewById(R.id.header);
@@ -84,6 +91,7 @@ public class SleepListActivity extends AppCompatActivity {
         // init the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(actionBarColor);
+        actionBar.setTitle(spannableString);
         actionBar.show();
 
         // empty_view imageView and textView

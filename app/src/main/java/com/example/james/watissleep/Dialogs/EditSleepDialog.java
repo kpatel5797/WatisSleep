@@ -2,6 +2,7 @@ package com.example.james.watissleep.Dialogs;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -185,6 +186,7 @@ public class EditSleepDialog extends AppCompatDialogFragment {
                 sleepAdapter.notifyDataSetChanged();
                 Snackbar snackbar = Snackbar
                         .make(itemView,"Sleep Entry Updated!",Snackbar.LENGTH_LONG)
+                        .setActionTextColor(Color.parseColor("#1E88E5"))
                         .setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
