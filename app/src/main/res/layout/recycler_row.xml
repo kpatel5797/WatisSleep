@@ -56,11 +56,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="24dp"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.34"
                     android:scaleType="center"
-                    android:scaleX="0.9"
-                    android:scaleY="0.77"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
                     android:alpha="0.5"
                     android:background="@drawable/clock"/>
 
