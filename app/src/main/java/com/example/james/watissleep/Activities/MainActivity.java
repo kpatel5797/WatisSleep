@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -39,10 +39,10 @@ import com.db.chart.model.Point;
 import com.db.chart.view.AxisController;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
-import com.example.james.watissleep.Receivers.AlarmReceiver;
 import com.example.james.watissleep.Database_Tables.SleepEntry;
 import com.example.james.watissleep.Dialogs.FeedbackDialog;
 import com.example.james.watissleep.R;
+import com.example.james.watissleep.Receivers.AlarmReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -649,15 +649,14 @@ public class MainActivity extends AppCompatActivity
             CharSequence infoMessage = "This is supposed to start the About activity!";
             Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.send_feedback) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("message/rfc822");
-            // TODO: make a developer email which will receive feedback on app improvements, etc.
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"james_harris@outlook.com"});
+            final String[] devEmails = {"james_harris@outlook.com"};
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setType("*/*");
+            intent.setData(Uri.parse("mailto:"));
+            intent.putExtra(Intent.EXTRA_EMAIL, devEmails);
             intent.putExtra(Intent.EXTRA_SUBJECT, "WatisSleep Feedback!");
-            try {
-                startActivity(Intent.createChooser(intent, "Send your feedback!!"));
-            } catch (ActivityNotFoundException ex) {
-                Toast.makeText(MainActivity.this, "There are no email clients installed... You cannot send feedback to the developer :(", Toast.LENGTH_SHORT).show();
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
         }
         return true;

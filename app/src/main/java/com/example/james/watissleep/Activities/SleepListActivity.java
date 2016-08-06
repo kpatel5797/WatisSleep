@@ -92,6 +92,7 @@ public class SleepListActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(actionBarColor);
         actionBar.setTitle(spannableString);
+        actionBar.setHomeAsUpIndicator(R.drawable.little);
         actionBar.show();
 
         // empty_view imageView and textView
