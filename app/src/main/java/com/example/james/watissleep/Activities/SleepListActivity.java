@@ -69,7 +69,7 @@ public class SleepListActivity extends AppCompatActivity {
 
         // colour of the actionBar
         final ColorDrawable actionBarColor = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
-        actionBarColor.setAlpha(0);
+        actionBarColor.setAlpha(255);
 
         // swipe to dismiss
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -114,23 +114,6 @@ public class SleepListActivity extends AppCompatActivity {
             emptyViewText.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
-
-        // handles the scrolling of the recyclerView
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                // increment/decrement the totalScrolled based on the user scrolling
-                totalScrolled += dy;
-                // 255 is the max value for setAlpha method
-                if (totalScrolled / 2 <= 255) {
-                    actionBarColor.setAlpha(totalScrolled / 2);
-                    getSupportActionBar().setBackgroundDrawable(actionBarColor);
-                } else {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-                }
-            }
-        });
     }
 
     @Override
