@@ -39,10 +39,15 @@
 
         <receiver android:name=".Receivers.AlarmReceiver" />
 
-        <activity android:name=".Activities.SleepListActivity"
-            android:parentActivityName=".Activities.MainActivity"
+        <activity
+            android:name=".Activities.SleepListActivity"
             android:label="List of Sleep Entries"
-            android:theme="@style/AppTheme.SleepListActivity"></activity>
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme.SleepListActivity" />
+        <activity android:name=".Activities.StatisticsActivity"
+            android:theme="@style/AppTheme"
+            android:label="Sleep Statistics"
+            android:parentActivityName=".Activities.MainActivity"/>
     </application>
 
 </manifest>

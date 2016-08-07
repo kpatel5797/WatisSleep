@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#282E48"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/feedbackChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="48dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/happy_face"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/good_sleeps_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Good Sleeps"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/number_good_sleeps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#AED581"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/neutral_face"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/ok_sleeps_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Neutral Sleeps"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/number_ok_sleeps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#EDB858"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/sad_face"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/bad_sleeps_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Bad Sleeps"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/number_bad_sleeps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#ED5885"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Other Stats"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/night_sky"
+                android:tint="@android:color/white"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/average_hours_sleep_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Avg Amount Of Sleep"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/average_hours_sleep_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#6ECFC6"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/bed_time"
+                android:tint="@android:color/white"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/average_sleep_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Avg Sleep Time"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/average_sleep_time_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#7656E8"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingRight="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/morning"
+                android:tint="@android:color/white"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/average_wake_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Avg Wake Time"
+                android:layout_marginLeft="132dp"
+                android:textAlignment="gravity"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/average_wake_time_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="300dp"
+                android:textColor="#58BBED"
+                android:text="5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="132dp"
+                android:background="#757575"
+                android:alpha="0.7"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

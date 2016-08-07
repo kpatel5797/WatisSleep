@@ -636,7 +636,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_stats) {
             //CharSequence statsMessage = "This is supposed to start the Statistics activity!";
             //Toast.makeText(MainActivity.this, statsMessage, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(),PieActivity.class);
+            Intent intent = new Intent(getApplicationContext(),StatisticsActivity.class);
             intent.putExtra("FROM_ACTIVITY","MainActivity");
             startActivity(intent);
             overridePendingTransition(R.anim.right_in,R.anim.left_out);
