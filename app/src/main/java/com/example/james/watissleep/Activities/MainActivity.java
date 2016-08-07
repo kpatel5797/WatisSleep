@@ -627,15 +627,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_settings) {
-            // RUN THE INTENT AFTER A DELAY OF 250 MILLISECONDS
             Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
             intent.putExtra("FROM_ACTIVITY","MainActivity");
             startActivity(intent);
             overridePendingTransition(R.anim.right_in,R.anim.left_out);
 
         } else if (id == R.id.nav_stats) {
-            //CharSequence statsMessage = "This is supposed to start the Statistics activity!";
-            //Toast.makeText(MainActivity.this, statsMessage, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(),StatisticsActivity.class);
             intent.putExtra("FROM_ACTIVITY","MainActivity");
             startActivity(intent);
