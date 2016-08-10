@@ -68,7 +68,7 @@ public class StatisticsActivity extends AppCompatActivity {
         double minutes = seconds / 60.0;
         // hours from minutes
         double hours_of_sleep = minutes / 60.0;
-        double average_amount_of_sleep = hours_of_sleep / all_sleep_entries.size();
+        double average_amount_of_sleep = (all_sleep_entries.size() > 0) ? hours_of_sleep / all_sleep_entries.size() : hours_of_sleep / (all_sleep_entries.size() + 1);
 
         String average_bed_time = calculateAverageOfTime(bed_times);
         String average_wake_time = calculateAverageOfTime(wake_times);
@@ -166,7 +166,9 @@ public class StatisticsActivity extends AppCompatActivity {
             seconds += Integer.valueOf(hhmmss[0]) * 60 * 60;
             seconds += Integer.valueOf(hhmmss[1]) * 60;
         }
-        seconds /= timeInHHmm.size();
+
+        seconds /= (timeInHHmm.size() > 0) ? timeInHHmm.size() : (timeInHHmm.size() + 1);
+
         long hh = seconds / 60 / 60;
         long mm = (seconds / 60) % 60;
         if (hh >= 12) {
