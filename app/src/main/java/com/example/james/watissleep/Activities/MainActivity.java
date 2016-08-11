@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity
                     recent_five_sleep_time_arraylist.toArray(new String[recent_five_sleep_time_arraylist.size()]);
 
             LineSet dataset = new LineSet(recent_five_sleep_time, recent_five_hours_sleep);
-            dataset.setColor(Color.parseColor("#0290c3"))
+            dataset.setColor(Color.parseColor("#424242"))
                     .setThickness(Tools.fromDpToPx(3))
                     .setSmooth(true);
             float screen_density = getResources().getDisplayMetrics().density;
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
                 point.setRadius(screen_density * 5.0f);
                 point.setStrokeThickness(screen_density * 2.5f);
                 point.setColor(Color.parseColor("#ffffff"));
-                point.setStrokeColor(Color.parseColor("#0290c3"));
+                point.setStrokeColor(Color.parseColor("#424242"));
             }
 
             sleep_hours_chart.addData(dataset);

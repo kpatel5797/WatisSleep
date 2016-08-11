@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.TypefaceSpan;
 import android.widget.TextView;
 
 import com.example.james.watissleep.Database_Tables.FeedbackEntry;
@@ -33,9 +35,14 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_main);
         final ColorDrawable actionBarColor = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
+        SpannableString spannableString = new SpannableString("Sleep Statistics");
+        spannableString.setSpan(new TypefaceSpan("RobotoTTF/RobotoCondensed-Bold.ttf"), 0, spannableString.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(actionBarColor);
+        actionBar.setTitle(spannableString);
         actionBar.show();
 
         showFeedbackPie();
