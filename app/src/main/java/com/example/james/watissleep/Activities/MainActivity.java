@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         timeText.setTypeface(roboto_light);
 
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText(sharedPreferences.getString("alarmTime","NO ALARM SET"));
+        alarmSet.setText(sharedPreferences.getString("alarmTime","No alarm set"));
         alarmSet.setTypeface(roboto_light);
 
         //############################# SHARED PREFERENCES #########################################
@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity
         confirm_btn.setVisibility(View.INVISIBLE);
 
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText("NO ALARM SET");
+        alarmSet.setText("No alarm set");
 
         // cancel the current pending intent
         intentAlarm = new Intent(this, AlarmReceiver.class);
@@ -407,7 +407,7 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("cancel_alarm_btn_visible",false);
         editor.putBoolean("confirm_alarm_btn_visible",false);
         editor.putBoolean("alarm_confirmed",false);
-        editor.putString("alarmTime","NO ALARM SET");
+        editor.putString("alarmTime","No alarm set");
         editor.commit();
     }
 
@@ -431,11 +431,11 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("confirm_alarm_btn_visible",false);
         editor.putBoolean("cancel_alarm_btn_visible",false);
         editor.putBoolean("broadcast_received",false);
-        editor.putString("alarmTime","NO ALARM SET");
+        editor.putString("alarmTime","No alarm set");
         editor.putBoolean("alarm_confirmed",false);
 
         TextView alarmSet = (TextView) findViewById(R.id.alarmSet);
-        alarmSet.setText("NO ALARM SET");
+        alarmSet.setText("No alarm set");
 
         FancyButton set_alarm_btn = (FancyButton) findViewById(R.id.btn_alarm);
         FancyButton reset_btn = (FancyButton) findViewById(R.id.btn_reset_alarm);

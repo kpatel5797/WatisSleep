@@ -3,6 +3,7 @@ package com.example.james.watissleep.Activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -11,6 +12,10 @@ import android.preference.SwitchPreference;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.TypefaceSpan;
 import android.view.MenuItem;
 
 import com.example.james.watissleep.AppCompatPreferenceActivity;
@@ -148,6 +153,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            SpannableString spannableString = new SpannableString("Settings");
+            spannableString.setSpan(new TypefaceSpan("RobotoTTF/RobotoCondensed-Bold.ttf"), 0, spannableString.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+            actionBar.setTitle(spannableString);
             actionBar.setHomeAsUpIndicator(R.drawable.little);
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);

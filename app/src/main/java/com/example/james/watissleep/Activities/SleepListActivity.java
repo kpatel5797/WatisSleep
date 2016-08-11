@@ -1,5 +1,6 @@
 package com.example.james.watissleep.Activities;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.view.Window;
@@ -52,6 +54,7 @@ public class SleepListActivity extends AppCompatActivity {
         SpannableString spannableString = new SpannableString("Sleep Entries");
         spannableString.setSpan(new TypefaceSpan("RobotoTTF/RobotoCondensed-Bold.ttf"), 0, spannableString.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
         // init the header
         RecyclerViewHeader recyclerViewHeader = (RecyclerViewHeader) findViewById(R.id.header);
