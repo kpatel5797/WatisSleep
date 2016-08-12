@@ -43,7 +43,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs);
         setupActionBar();
-
         
         volume_seek = (SeekBarPreference) findPreference("volume_seek");
         SpannableString spannableString = new SpannableString("Alarm Volume");
