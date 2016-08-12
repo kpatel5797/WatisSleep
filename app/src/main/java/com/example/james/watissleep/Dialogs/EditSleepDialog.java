@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -184,8 +187,10 @@ public class EditSleepDialog extends AppCompatDialogFragment {
                 // show a snackBar that tells the user that the sleep entry was updated
                 // also give the user the option to revert the entry back to what it was originally
                 sleepAdapter.notifyDataSetChanged();
+                SpannableString spannableString = new SpannableString("Sleep Entry Updated!");
+                spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                 Snackbar snackbar = Snackbar
-                        .make(itemView,"Sleep Entry Updated!",Snackbar.LENGTH_LONG)
+                        .make(itemView,spannableString,Snackbar.LENGTH_LONG)
                         .setActionTextColor(Color.parseColor("#1E88E5"))
                         .setAction("UNDO", new View.OnClickListener() {
                             @Override
