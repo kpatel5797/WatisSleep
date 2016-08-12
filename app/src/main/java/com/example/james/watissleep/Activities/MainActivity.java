@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
 
         // get the shared preferences file
         // comment
+        //
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
         super.onCreate(savedInstanceState);
