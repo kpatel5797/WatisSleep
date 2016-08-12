@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         // get the shared preferences file
+        // comment
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
         super.onCreate(savedInstanceState);
