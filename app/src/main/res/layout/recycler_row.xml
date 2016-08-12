@@ -45,40 +45,33 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="4">
+                android:layout_marginLeft="24dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="24dp"
-                    android:layout_weight="0.34"
-                    android:scaleType="center"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:alpha="0.5"
                     android:background="@drawable/clock"/>
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:textColor="@android:color/black"
                     android:id="@+id/sleep_times"
                     android:alpha="0.5"
-                    android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="2dp"
                     android:text="12:00 PM - 12:00 AM"
-                    android:layout_marginLeft="8dp"
                     android:textSize="12sp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
