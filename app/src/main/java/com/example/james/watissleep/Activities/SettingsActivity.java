@@ -44,7 +44,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         addPreferencesFromResource(R.xml.prefs);
         setupActionBar();
 
-        // set the color of the volume_seek setting
         volume_seek = (SeekBarPreference) findPreference("volume_seek");
         SpannableString spannableString = new SpannableString("Alarm Volume");
         spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.cardview_dark_background)), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
