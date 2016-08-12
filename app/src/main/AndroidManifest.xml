@@ -41,10 +41,14 @@
 
         <activity
             android:name=".Activities.SleepListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:label="List of Sleep Entries"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.SleepListActivity" />
         <activity android:name=".Activities.StatisticsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:label="Sleep Statistics"
             android:parentActivityName=".Activities.MainActivity"/>
