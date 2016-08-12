@@ -44,6 +44,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         addPreferencesFromResource(R.xml.prefs);
         setupActionBar();
 
+        volume_seek = (SeekBarPreference) findPreference("volume_seek");
+        SpannableString spannableString = new SpannableString("Alarm Volume");
+        spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.cardview_dark_background)), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        volume_seek.setTitle(spannableString);
+
+
 
         // handle the vibrate toggle & write vib to shared preferences
         SwitchPreference vibrate = (SwitchPreference) findPreference("vibrate_setting");
@@ -158,7 +164,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             actionBar.setTitle(spannableString);
-            actionBar.setHomeAsUpIndicator(R.drawable.little);
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

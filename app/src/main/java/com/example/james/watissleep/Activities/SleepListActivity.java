@@ -44,7 +44,7 @@ public class SleepListActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
 
         // get the sleep entries
-        RealmResults<SleepEntry> sleep_data = realm.where(SleepEntry.class).findAll().sort("wakeTime", Sort.DESCENDING);
+        RealmResults<SleepEntry> sleep_data = realm.where(SleepEntry.class).findAllSorted("wakeTime",Sort.DESCENDING);
 
         // init the recyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -95,7 +95,6 @@ public class SleepListActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(actionBarColor);
         actionBar.setTitle(spannableString);
-        actionBar.setHomeAsUpIndicator(R.drawable.little);
         actionBar.show();
 
         // empty_view imageView and textView

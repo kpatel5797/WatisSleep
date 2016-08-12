@@ -309,7 +309,6 @@ public class MainActivity extends AppCompatActivity
         if (System.currentTimeMillis() > c.getTimeInMillis()) {
             // set the alarm for tomorrow (ie. the next day)
             c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) + 1);
-            Toast.makeText(MainActivity.this, "You cant set the alarm for a past time!", Toast.LENGTH_SHORT).show();
         }
         // create an intent/pending intent to set the alarm
         intentAlarm = new Intent(this, AlarmReceiver.class);

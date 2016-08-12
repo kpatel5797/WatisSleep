@@ -7,7 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:textColorPrimary">@android:color/background_dark</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:actionBarStyle">@style/ActionBarWhite</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay">
@@ -20,6 +22,11 @@
 
     <!-- dark preference theme -->
     <style name="PreferenceTheme" parent="Theme.AppCompat" />
+
+    <!-- white actionbar text and back arrow -->
+    <style name="ActionBarWhite" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
