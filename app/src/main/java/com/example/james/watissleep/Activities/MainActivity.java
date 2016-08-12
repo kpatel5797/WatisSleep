@@ -340,7 +340,6 @@ public class MainActivity extends AppCompatActivity
         editor.putBoolean("broadcast_received",false);
 
         // set a calendar for 1 minute in future
-        // TODO(JAMES): get the snooze time from sharedPreferences (user should be able to set via preference activity)
         int amount_to_snooze = sharedPreferences.getInt("snooze_amount_minutes",10);
         Calendar snoozeTime = Calendar.getInstance();
         snoozeTime.add(Calendar.MINUTE,amount_to_snooze);
