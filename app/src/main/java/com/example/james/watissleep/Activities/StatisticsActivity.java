@@ -192,4 +192,16 @@ public class StatisticsActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
 }
