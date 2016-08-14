@@ -25,6 +25,7 @@ public class LicenseActivity extends AppCompatActivity {
     //private ArrayAdapter mArrayAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.right_in,R.anim.left_out);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.license_list);
