@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
             set_alarm_btn.setVisibility(View.GONE);
             three_btn_layout.setVisibility(View.VISIBLE);
             // TODO(JAMES):set this back to INVISIBLE, this is for testing purposes
-            cancel_btn.setVisibility(View.VISIBLE);
+            cancel_btn.setVisibility(View.INVISIBLE);
             reset_btn.setVisibility(View.INVISIBLE);
             confirm_btn.setVisibility(View.INVISIBLE);
         } else {
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity
         set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
-        cancel_btn.setVisibility(View.VISIBLE);
+        cancel_btn.setVisibility(View.INVISIBLE);
         confirm_btn.setVisibility(View.INVISIBLE);
         snooze_wake_layout.setVisibility(View.GONE);
         three_btn_layout.setVisibility(View.VISIBLE);
@@ -522,7 +522,7 @@ public class MainActivity extends AppCompatActivity
         set_alarm_btn.setVisibility(View.GONE);
         reset_btn.setVisibility(View.INVISIBLE);
         // TODO(JAMES):set this back to INVISIVBLE, this is only for testing purposes
-        cancel_btn.setVisibility(View.VISIBLE);
+        cancel_btn.setVisibility(View.INVISIBLE);
         three_btn_layout.setVisibility(View.VISIBLE);
         snooze_wake_layout.setVisibility(View.GONE);
         confirm_btn.setVisibility(View.INVISIBLE);
@@ -645,7 +645,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             overridePendingTransition(R.anim.right_in,R.anim.left_out);
         } else if (id == R.id.send_feedback) {
-            final String[] devEmails = {"james_harris@outlook.com"};
+            final String[] devEmails = {"developer.watissleep@gmail.com"};
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setType("*/*");
             intent.setData(Uri.parse("mailto:"));

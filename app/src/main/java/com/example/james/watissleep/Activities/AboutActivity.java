@@ -22,6 +22,7 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), LicenseActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
             }
         });
 

@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 
 import com.example.james.watissleep.Activities.MainActivity;
+import com.example.james.watissleep.R;
 
 import java.io.IOException;
 
@@ -101,9 +102,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public void displayNotification(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(com.example.james.watissleep.R.mipmap.ic_launcher);
-        builder.setContentTitle("Test Notification");
-        builder.setContentText("This notification will open up the alarm screen");
+        builder.setSmallIcon(R.mipmap.ic_app_icon);
+        builder.setContentTitle("It's time to wake up");
+        builder.setContentText("You should probably wake up now. It would not be wise to snooze");
         builder.setAutoCancel(true);
         builder.setPriority(Notification.PRIORITY_MAX);
 

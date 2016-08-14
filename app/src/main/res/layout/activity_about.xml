@@ -36,7 +36,7 @@
         android:layout_height="10dp"
         android:paddingTop="20dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="WatisSleep v0.08.12.16"
+        android:text="WatisSleep v1.08.13.16"
         android:id="@+id/version"
         android:layout_weight="0.08"
         android:layout_gravity="center_horizontal" />
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Made in Toronto with love"
+        android:text="Made in Toronto with love <3"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.03" />
