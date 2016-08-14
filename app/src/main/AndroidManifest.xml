@@ -42,16 +42,29 @@
         <activity
             android:name=".Activities.SleepListActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
             android:label="List of Sleep Entries"
             android:parentActivityName=".Activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SleepListActivity" />
-        <activity android:name=".Activities.StatisticsActivity"
+        <activity
+            android:name=".Activities.StatisticsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Sleep Statistics"
+            android:parentActivityName=".Activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        
+        <activity android:name=".Activities.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:label="Sleep Statistics"
+            android:label="About"
             android:parentActivityName=".Activities.MainActivity"/>
+
+        <activity android:name=".Activities.LicenseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activities.AboutActivity"
+            android:label="Licenses"></activity>
     </application>
 
 </manifest>

@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.db.chart.Tools;
@@ -641,8 +640,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             overridePendingTransition(R.anim.right_in,R.anim.left_out);
         } else if (id == R.id.nav_info) {
-            CharSequence infoMessage = "This is supposed to start the About activity!";
-            Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(),AboutActivity.class);
+            intent.putExtra("FROM_ACTIVITY","MainActivity");
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in,R.anim.left_out);
         } else if (id == R.id.send_feedback) {
             final String[] devEmails = {"james_harris@outlook.com"};
             Intent intent = new Intent(Intent.ACTION_SENDTO);

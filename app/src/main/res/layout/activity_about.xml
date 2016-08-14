@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AboutActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:textSize="15sp"
+        android:text="A simple alarm clock app which accurately tracks your sleep statistics"
+        android:id="@+id/textView2"
+        android:paddingTop="20dp"
+        android:layout_weight="0.13"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:text="Licenses for Libraries"
+        android:id="@+id/lic_button"
+        android:clickable="true"
+        android:layout_weight="0.13"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="WatisSleep v0.08.12.16"
+        android:id="@+id/version"
+        android:layout_weight="0.08"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Made in Toronto with love"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03" />
+
+</LinearLayout>
