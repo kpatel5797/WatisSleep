@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.james.watissleep">
+    package="com.watissleep.james.watissleep">
 
     <!-- permissions -->
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.watissleep.james.watissleep.Activities.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -27,43 +27,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.SettingsActivity"
+            android:name="com.watissleep.james.watissleep.Activities.SettingsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Settings"
-            android:parentActivityName=".Activities.MainActivity"
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.PieActivity"
+            android:name="com.watissleep.james.watissleep.Activities.PieActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.MainActivity" />
 
-        <receiver android:name=".Receivers.AlarmReceiver" />
+        <receiver android:name="com.watissleep.james.watissleep.Receivers.AlarmReceiver" />
 
         <activity
-            android:name=".Activities.SleepListActivity"
+            android:name="com.watissleep.james.watissleep.Activities.SleepListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="List of Sleep Entries"
-            android:parentActivityName=".Activities.MainActivity"
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SleepListActivity" />
         <activity
-            android:name=".Activities.StatisticsActivity"
+            android:name="com.watissleep.james.watissleep.Activities.StatisticsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="Sleep Statistics"
-            android:parentActivityName=".Activities.MainActivity"
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         
-        <activity android:name=".Activities.AboutActivity"
+        <activity android:name="com.watissleep.james.watissleep.Activities.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:label="About"
-            android:parentActivityName=".Activities.MainActivity"/>
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.MainActivity"/>
 
-        <activity android:name=".Activities.LicenseActivity"
+        <activity android:name="com.watissleep.james.watissleep.Activities.LicenseActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:parentActivityName=".Activities.AboutActivity"
+            android:parentActivityName="com.watissleep.james.watissleep.Activities.AboutActivity"
             android:label="Licenses"></activity>
     </application>
 

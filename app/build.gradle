@@ -4,9 +4,8 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 24
     buildToolsVersion "23.0.3"
-
     defaultConfig {
-        applicationId "com.example.james.watissleep"
+        applicationId 'com.watissleep.james.watissleep'
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 2
@@ -18,10 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     // android support libs
     compile 'com.android.support:appcompat-v7:24.1.1'
@@ -40,10 +41,8 @@ dependencies {
     // recyclerView libs
     compile 'jp.wasabeef:recyclerview-animators:2.2.3'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
-
     // william chart
     compile 'com.diogobernardino:williamchart:2.2'
-
     // circular imageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
 }
