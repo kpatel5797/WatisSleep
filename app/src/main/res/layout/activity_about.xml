@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Made in Toronto with love <3"
+        android:text="Made in Toronto with love"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.03" />
